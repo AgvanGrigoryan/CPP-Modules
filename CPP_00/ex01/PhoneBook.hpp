@@ -10,9 +10,9 @@ class PhoneBook {
 		PhoneBook();
 		void addContact(const Contact& new_contact);
 		void searchContact();
-		void printContactById(const unsigned int id);
 		void show_contacts_demo();
 	private:
+		void printContactById(const int id);
 		Contact contacts[MAX_CONTACTS];
 		int	elems;
 };

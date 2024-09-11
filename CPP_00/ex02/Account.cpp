@@ -95,7 +95,7 @@ bool	Account::makeWithdrawal( int withdrawal )
 		std::cout << "p_amount:"<< _amount << ";";
 		if (_amount - withdrawal < 0)
 		{
-			std::cout << "withdrawal:" << "refused" << ";" << std::endl;;
+			std::cout << "withdrawal:" << "refused" << std::endl;;
 			return (false);
 		}
 		_amount -= withdrawal;

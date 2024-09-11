@@ -59,10 +59,14 @@ void PhoneBook::searchContact()
 	}
 }
 
-void PhoneBook::printContactById(const unsigned int id)
+void PhoneBook::printContactById(const int id)
 {
 	Contact tmp;
 
+	if (id < 0 || id >= this->elems) {
+		std::cout << "Id is out of range" << std::endl;
+		return ;
+	}
 	tmp = contacts[id];
 	std::cout << "ID: " << id << std::endl;
 	std::cout << "First Name: " << tmp.get_first_name() << std::endl;

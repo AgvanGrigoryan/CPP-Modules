@@ -7,7 +7,7 @@
 
 int main()
 {
-	PhoneBook phone_book;
+	PhoneBook phonebook;
 	std::string line;
 	std::cout << "Enter command (ADD/SEARCH/EXIT): ";
 	while (getline(std::cin, line))
@@ -16,12 +16,12 @@ int main()
 		{
 			Contact new_contact;
 			new_contact.setAllValues();
-			phone_book.addContact(new_contact);
+			phonebook.addContact(new_contact);
 		}
 		else if (line == "SEARCH")
 		{
-			phone_book.show_contacts_demo();
-			phone_book.searchContact();
+			phonebook.show_contacts_demo();
+			phonebook.searchContact();
 		}
 		else if (line == "EXIT")
 			break;
