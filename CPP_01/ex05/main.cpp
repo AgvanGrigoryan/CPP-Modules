@@ -26,5 +26,5 @@ int	main(int argc, char *argv[])
 // 	test_level(harl, "INFO");
 // 	test_level(harl, "WARNING");
 // 	test_level(harl, "ERROR");
-
+//	return (0);
 // }
