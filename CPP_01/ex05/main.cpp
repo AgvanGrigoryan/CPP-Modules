@@ -9,7 +9,7 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	std::cout << "Expected one argument" << std::endl;
-
+	return (1);
 }
 
 // void	test_level(Harl& harl, const std::string& level)
