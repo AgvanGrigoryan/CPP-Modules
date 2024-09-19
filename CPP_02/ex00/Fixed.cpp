@@ -3,11 +3,11 @@
 Fixed::Fixed() : FP_number(0) {
 	std::cout << "Default constructor called" << std::endl;
 }
-Fixed::Fixed(Fixed& other) {
+Fixed::Fixed(const Fixed& other) {
 	std::cout << "Copy constructor called" << std::endl;
 	*this = other;
 }
-Fixed&	Fixed::operator=(Fixed& other) {
+Fixed&	Fixed::operator=(const Fixed& other) {
 	std::cout << "Copy assignment operator called" << std::endl;
 	this->FP_number = other.getRawBits();
 	return (*this);
