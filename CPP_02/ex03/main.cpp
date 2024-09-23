@@ -71,7 +71,7 @@ int main( void ) {
 	std::cout << "\033[1;32m" << "The point on the edges of the triangle" << "\033[0m" << std::endl;
 	check_points(triangles_with_point_on_edge, points_on_edge_triangle);
 
-	std::cout << "\033[1;32m" << "The point on the edges of the triangle" << "\033[0m" << std::endl;
+	std::cout << "\033[1;32m" << "The point on the vertexes of the triangle" << "\033[0m" << std::endl;
 	check_points(triangles_with_point_on_vertex, points_on_vertex_triangle);
 	return 0;
 }
