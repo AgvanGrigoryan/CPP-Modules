@@ -4,7 +4,7 @@
 #include <iostream>
 
 class ClapTrap {
-private:
+protected:
 	std::string		name;
 	unsigned int	hit_points;
 	unsigned int	energy_points;
@@ -12,10 +12,10 @@ private:
 
 public:
 // constructors
-	virtual ClapTrap();
-	virtual ClapTrap(const ClapTrap& other);
-	virtual ClapTrap(const std::string& name);
-	virtual ~ClapTrap();
+	ClapTrap();
+	ClapTrap(const ClapTrap& other);
+	ClapTrap(const std::string& name);
+	~ClapTrap();
 
 // overloaded operators
 	ClapTrap& operator=(const ClapTrap& other); // copy assigment operator

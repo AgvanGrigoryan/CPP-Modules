@@ -2,13 +2,13 @@
 #include "ClapTrap.hpp"
 
 // Default Constructor
-ClapTrap::ClapTrap() : name("<anonymous>"), hit_points(10), energy_points(10), attack_damage(0) {
-	std::cout << "Default Constructor called" << std::endl;
+ClapTrap::ClapTrap() : name("<ClapTrap_anonymous>"), hit_points(10), energy_points(10), attack_damage(0) {
+	std::cout << "ClapTrap default constructor called" << std::endl;
 }
 
 // Paramether Constructor
 ClapTrap::ClapTrap(const std::string& new_name) : name(new_name), hit_points(10), energy_points(10), attack_damage(0) {
-	std::cout << "Parameter Constructor called" << std::endl;
+	std::cout << "ClapTrap parameter constructor called" << std::endl;
 };
 
 // Copy constructor
