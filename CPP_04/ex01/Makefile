@@ -3,9 +3,11 @@ PROGRAM_NAME = Polymorphism
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 CC = c++ $(CPPFLAGS)
 
-HEADERS = Animal.hpp Cat.hpp Dog.hpp\
+HEADERS = Brain.hpp\
+			Animal.hpp Cat.hpp Dog.hpp\
 			WrongAnimal.hpp WrongCat.hpp WrongDog.hpp
-SOURCES = main.cpp Animal.cpp Cat.cpp Dog.cpp\
+SOURCES = main.cpp Brain.cpp\
+			Animal.cpp Cat.cpp Dog.cpp\
 			WrongAnimal.cpp WrongCat.cpp WrongDog.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
