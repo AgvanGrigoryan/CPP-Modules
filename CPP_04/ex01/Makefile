@@ -1,4 +1,4 @@
-PROGRAM_NAME = Polymorphism
+PROGRAM_NAME = brainInAnimals
 
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 CC = c++ $(CPPFLAGS)
