@@ -4,12 +4,12 @@
 
 // Default Constructor
 ClapTrap::ClapTrap() : name("<anonymous>"), hit_points(10), energy_points(10), attack_damage(0) {
-	std::cout << "Default Constructor called" << std::endl;
+	std::cout << "ClapTrap Default Constructor called" << std::endl;
 }
 
 // Paramether Constructor
 ClapTrap::ClapTrap(const std::string& new_name) : name(new_name), hit_points(10), energy_points(10), attack_damage(0) {
-	std::cout << "Parameter Constructor called" << std::endl;
+	std::cout << "ClapTrap Parameter Constructor called" << std::endl;
 };
 
 // Copy constructor
@@ -21,7 +21,7 @@ ClapTrap::ClapTrap(const ClapTrap& other) {
 	energy_points = other.energy_points;
 	attack_damage = other.attack_damage;
 
-	std::cout << "Copy Constructor called" << std::endl;
+	std::cout << "ClapTrap Copy Constructor called" << std::endl;
 }
 
 // Copy assigment operator
@@ -33,7 +33,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other) {
 	energy_points = other.energy_points;
 	attack_damage = other.attack_damage;
 
-	std::cout << "Copy assigment operator called" << std::endl;
+	std::cout << "ClapTrap Copy assigment operator called" << std::endl;
 	return (*this);
 }
 
