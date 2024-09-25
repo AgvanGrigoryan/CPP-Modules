@@ -18,9 +18,13 @@ ScavTrap::ScavTrap(const std::string& new_name) {
 	std::cout << "ScavTrap parameter constructor called" << std::endl;
 }
 
+ScavTrap::~ScavTrap() {
+	std::cout << "ScavTrap destructor called" << std::endl;
+}
+
 void ScavTrap::attack(const std::string& target) {
-	if (energy_points <= 0) {
-		std::cout << "Not enough energy points to attack" << std::endl;
+	if (hit_points <= 0 || energy_points <= 0) {
+		std::cout << name << " doesn't have enough energy or hit points to attack " << target << std::endl;
 		return ;
 	}
 	std::cout << "ScavTrap " << name << " attacks " << target << ", causing " << attack_damage << " points of damage!" << std::endl;
@@ -28,5 +32,5 @@ void ScavTrap::attack(const std::string& target) {
 }
 
 void	ScavTrap::guardGate() {
-	std::cout << name << "ScavTrap is now in Gate keeper mode" << std::cout;
+	std::cout << name << "ScavTrap is now in Gate keeper mode" << std::endl;
 }

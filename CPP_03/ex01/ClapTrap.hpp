@@ -6,9 +6,9 @@
 class ClapTrap {
 protected:
 	std::string		name;
-	unsigned int	hit_points;
-	unsigned int	energy_points;
-	unsigned int	attack_damage;
+	int				hit_points;
+	int				energy_points;
+	int				attack_damage;
 
 public:
 // constructors
@@ -21,9 +21,9 @@ public:
 	ClapTrap& operator=(const ClapTrap& other); // copy assigment operator
 
 // member functions
-	void	attack(const std::string& target);
-	void	takeDamage(unsigned int amount);
-	void	beRepaired(unsigned int amount);
+	virtual	void	attack(const std::string& target);
+	void			takeDamage(unsigned int amount);
+	void			beRepaired(unsigned int amount);
 };
 
 #endif
