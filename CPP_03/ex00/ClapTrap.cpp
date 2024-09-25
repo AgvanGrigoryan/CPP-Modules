@@ -1,4 +1,5 @@
 #include <iostream>
+#include <climits>
 #include "ClapTrap.hpp"
 
 // Default Constructor
@@ -44,7 +45,7 @@ ClapTrap::~ClapTrap() {
 // Member functions
 void ClapTrap::attack(const std::string& target) {
 	if (hit_points <= 0 || energy_points <= 0) {
-		std::cout << name <<" doesn't have enough energy or hit points to attack " << target << std::endl;
+		std::cout << name << " doesn't have enough energy or hit points to attack " << target << std::endl;
 		return ;
 	}
 	std::cout << "ClapTrap " << name << " attacks " << target << ", causing " << attack_damage << " points of damage!" << std::endl;
@@ -52,20 +53,25 @@ void ClapTrap::attack(const std::string& target) {
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
-	hit_points -= amount;
 	std::cout << name << " takes " << amount << " damage" << std::endl;
-	if (hit_points <= 0) {
+	if (amount >= INT_MAX || amount >= static_cast<unsigned int>(hit_points)) {
 		hit_points = 0;
-		std::cout << name << " die" << std::endl;;
+		std::cout << name << " die" << std::endl;
 	}
+	hit_points -= amount;
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
+	long long int	tmp;
 	if (hit_points <= 0 || energy_points <= 0) {
 		std::cout << "Not enough energy or hit points to repair" << std::endl;
 		return ;
 	}
-	hit_points += amount;
+	tmp = hit_points + amount;
+	if (tmp > INT_MAX)
+		hit_points = INT_MAX;
+	else
+		hit_points += amount;
 	energy_points--;
 	std::cout << name << " repaired " << amount << " hit points" << std::endl;
 }
