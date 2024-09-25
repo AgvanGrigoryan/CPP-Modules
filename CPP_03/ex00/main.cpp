@@ -3,6 +3,7 @@
 
 int	main(void)
 {
+	std::cout << "\033[1;34m\n" << "Constructors" << "\033[0m" << std::endl;
 	ClapTrap clap1("Boyo");
 	ClapTrap clap2;
 
@@ -23,6 +24,8 @@ int	main(void)
 	std::cout << "\033[1;33m\n" << "Shouldn't repair since hit points are 0" << "\033[0m" << std::endl;
 	clap2.beRepaired(10); // Shouldn't repair since hit points are 0
 
+	// testing attack when no enough energy
+	std::cout << "\033[1;32m\n" << "testing an attack with a lack of energy" << "\033[0m" << std::endl;
 	ClapTrap clap3("Anushik");
 	for (int i = 0; i < 10; i++)
 		clap3.attack("Sweet shop");
