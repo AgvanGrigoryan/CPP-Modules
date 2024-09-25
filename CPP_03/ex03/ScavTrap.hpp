@@ -4,11 +4,14 @@
 #include "ClapTrap.hpp"
 
 class ScavTrap : virtual public ClapTrap {
+protected:
+	ScavTrap(int);
 public:
 	ScavTrap();
 	ScavTrap(const std::string& name);
-	~ScavTrap();
-	void	attack(const std::string& target);
+	virtual ~ScavTrap();
+
+	virtual void	attack(const std::string& target);
 	void	guardGate();
 	
 };

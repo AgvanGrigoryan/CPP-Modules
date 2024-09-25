@@ -6,7 +6,7 @@
 
 class DiamondTrap : public FragTrap, public ScavTrap {
 private:
-	std::string	name;
+	std::string	_name;
 
 public:
 // constructors
@@ -18,8 +18,11 @@ public:
 // overloaded operators
 	DiamondTrap& operator=(const DiamondTrap& other); // copy assigment operator
 
-	void	attack(const std::string& target);
+	using	ScavTrap::attack;
 	void	whoAmI(void);
+	int		getAttack_damage();
+	int		getenergy_points();
+	int		gethit_points();
 };
 
 #endif

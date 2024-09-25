@@ -22,15 +22,21 @@ FragTrap::FragTrap(const std::string& new_name) {
 	std::cout << "FragTrap parameter constructor called" << std::endl;
 }
 
+FragTrap::FragTrap(int) {
+	name = "<FragTrap_anonymous>";
+	hit_points = 100;
+	attack_damage = 30;
+}
+
 void FragTrap::attack(const std::string& target) {
-	if (energy_points <= 0) {
-		std::cout << "Not enough energy points to attack" << std::endl;
+	if (hit_points <= 0 || energy_points <= 0) {
+		std::cout << name << " doesn't have enough energy or hit points to attack " << target << std::endl;
 		return ;
 	}
 	std::cout << "FragTrap " << name << " attacks " << target << ", causing " << attack_damage << " points of damage!" << std::endl;
 	energy_points--;
 }
 
-void	FragTrap::guardGate() {
-	std::cout << name << "FragTrap is now in Gate keeper mode" << std::cout;
+void	FragTrap::highFivesGuys() {
+	std::cout << name << "FragTrap High Fives Guyes :)" << std::cout;
 }

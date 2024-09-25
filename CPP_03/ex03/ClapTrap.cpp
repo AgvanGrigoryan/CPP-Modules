@@ -1,14 +1,15 @@
 #include <iostream>
+#include <climits>
 #include "ClapTrap.hpp"
 
 // Default Constructor
-ClapTrap::ClapTrap() : name("<ClapTrap_anonymous>"), hit_points(10), energy_points(10), attack_damage(0) {
-	std::cout << "ClapTrap default constructor called" << std::endl;
+ClapTrap::ClapTrap() : name("<anonymous>"), hit_points(10), energy_points(10), attack_damage(0) {
+	std::cout << "ClapTrap Default Constructor called" << std::endl;
 }
 
 // Paramether Constructor
 ClapTrap::ClapTrap(const std::string& new_name) : name(new_name), hit_points(10), energy_points(10), attack_damage(0) {
-	std::cout << "ClapTrap parameter constructor called" << std::endl;
+	std::cout << "ClapTrap Parameter Constructor called" << std::endl;
 };
 
 // Copy constructor
@@ -20,7 +21,7 @@ ClapTrap::ClapTrap(const ClapTrap& other) {
 	energy_points = other.energy_points;
 	attack_damage = other.attack_damage;
 
-	std::cout << "Copy Constructor called" << std::endl;
+	std::cout << "ClapTrap Copy Constructor called" << std::endl;
 }
 
 // Copy assigment operator
@@ -32,7 +33,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap& other) {
 	energy_points = other.energy_points;
 	attack_damage = other.attack_damage;
 
-	std::cout << "Copy assigment operator called" << std::endl;
+	std::cout << "ClapTrap Copy assigment operator called" << std::endl;
 	return (*this);
 }
 
@@ -43,8 +44,8 @@ ClapTrap::~ClapTrap() {
 
 // Member functions
 void ClapTrap::attack(const std::string& target) {
-	if (energy_points <= 0) {
-		std::cout << "Not enough energy points to attack" << std::endl;
+	if (hit_points <= 0 || energy_points <= 0) {
+		std::cout << name << " doesn't have enough energy or hit points to attack " << target << std::endl;
 		return ;
 	}
 	std::cout << "ClapTrap " << name << " attacks " << target << ", causing " << attack_damage << " points of damage!" << std::endl;
@@ -52,20 +53,25 @@ void ClapTrap::attack(const std::string& target) {
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
-	hit_points -= amount;
-	std::cout << name << " took " << amount << " damage" << std::endl;
-	if (hit_points <= 0) {
+	std::cout << name << " takes " << amount << " damage" << std::endl;
+	if (amount >= INT_MAX || amount >= static_cast<unsigned int>(hit_points)) {
 		hit_points = 0;
-		std::cout << name << " die" << std::endl;;
+		std::cout << name << " die" << std::endl;
 	}
+	hit_points -= amount;
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
-	if (energy_points <= 0) {
-		std::cout << "Not enough energy points to repair" << std::endl;
+	long long int	tmp;
+	if (hit_points <= 0 || energy_points <= 0) {
+		std::cout << "Not enough energy or hit points to repair" << std::endl;
 		return ;
 	}
-	hit_points += amount;
+	tmp = hit_points + amount;
+	if (tmp > INT_MAX)
+		hit_points = INT_MAX;
+	else
+		hit_points += amount;
 	energy_points--;
 	std::cout << name << " repaired " << amount << " hit points" << std::endl;
 }
