@@ -18,7 +18,8 @@ public:
 // overloaded operators
 	DiamondTrap& operator=(const DiamondTrap& other); // copy assigment operator
 
-	using	ScavTrap::attack;
+	// using	ScavTrap::attack;
+	virtual	void	attack(const std::string& target);
 	void	whoAmI(void);
 	int		getAttack_damage();
 	int		getenergy_points();
