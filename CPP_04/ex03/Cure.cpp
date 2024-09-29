@@ -12,12 +12,13 @@ Cure::~Cure() {
 	std::cout << "Cure Destructor called" << std::endl;
 }
 
-Cure::operator=(const Cure& other) {
+Cure& Cure::operator=(const Cure& other) {
 	if (*this != other)
 		this->type = other.type;
 	std::cout << "Cure copy assignment operator called" << std::endl;
-};
+	return (*this);
+}
 
 virtual AMateria* clone() const {
-	return (new Cure(this->type));
+	return (new Cure(this));
 }

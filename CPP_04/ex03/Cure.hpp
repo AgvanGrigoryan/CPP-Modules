@@ -3,13 +3,13 @@
 
 #include "AMateria.hpp"
 
-class Cure : AMateria {
+class Cure : public AMateria {
 public:
 	Cure();
 	Cure(const Cure& other);
 	~Cure();
 
-	operator=(const Cure& other);
+	Cure& operator=(const Cure& other);
 	virtual AMateria* clone() const;
 };
 
