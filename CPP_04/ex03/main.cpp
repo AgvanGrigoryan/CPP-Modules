@@ -10,9 +10,10 @@ int main()
 	me->showInventory();
 	AMateria* ice = new Ice();
 	AMateria* ice2 = new Ice();
+	AMateria* ptr3 = ice2;
 	me->equip(ice);
 	me->equip(ice2);
-	me->equip(ice);
+	me->equip(ptr3);
 	me->equip(ice2);
 
 	me->showInventory();

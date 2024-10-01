@@ -3,8 +3,8 @@ PROGRAM_NAME = interface
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 CC = c++ $(CPPFLAGS)
 
-HEADERS = ICharacter.hpp Character.hpp AMateria.hpp Ice.hpp
-SOURCES = main.cpp Character.cpp AMateria.cpp Ice.cpp
+HEADERS = ICharacter.hpp Character.hpp AMateria.hpp Ice.hpp IMateriaSource.hpp MateriaSource.hpp
+SOURCES = main.cpp Character.cpp AMateria.cpp Ice.cpp MateriaSource.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 all: $(PROGRAM_NAME)

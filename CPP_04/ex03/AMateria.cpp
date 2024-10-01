@@ -1,6 +1,6 @@
 #include "AMateria.hpp"
 
-AMateria::AMateria() {
+AMateria::AMateria() : type("NoType") {
 	std::cout << "AMateria default constructor called" << std::endl;
 }
 
@@ -27,6 +27,6 @@ std::string const & AMateria::getType() const {
 	return (type);
 }
 
-// void AMateria::use(ICharacter& target) {
-
-// }
+void AMateria::use(ICharacter& target) {
+	std::cout << "a non-contact strike towards " << target.getName();
+}
