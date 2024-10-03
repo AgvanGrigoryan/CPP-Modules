@@ -7,16 +7,16 @@
 #define B 1
 #define C 2
 
-bool	bsp(Point const a, Point const b, Point const c, Point const point);
+bool	bsp(Point const a, Point const b, Point const c, Point const points);
 
-void	check_points(Point triangles[TRIANGLES_CNT][3], Point points[TRIANGLES_CNT]) {
+void	check_points(Point (&triangles)[TRIANGLES_CNT][3], Point (&points)[TRIANGLES_CNT]) {
 	for (int i = 0; i < TRIANGLES_CNT; i++)
 	{
 		bool result = bsp(triangles[i][A], triangles[i][B], triangles[i][C], points[i]);
 		std::cout << std::fixed << std::setprecision(1) << "A:(" << triangles[i][A].getX() << ", " << triangles[i][A].getY() << ")\t";
 		std::cout << std::fixed << std::setprecision(1) << "B:(" << triangles[i][B].getX() << ", " << triangles[i][B].getY() << ")\t";
 		std::cout << std::fixed << std::setprecision(1) << "C:(" << triangles[i][C].getX() << ", " << triangles[i][C].getY() << ")\t";
-		std::cout << std::fixed << std::setprecision(1) << "P:(" << triangles[i][C].getX() << ", " << triangles[i][C].getY() << ")\t";
+		std::cout << std::fixed << std::setprecision(1) << "P:(" << points[i].getX() << ", " << points[i].getY() << ")\t";
 		if (result == true)
 			std::cout << "\033[1;32m";
 		else
