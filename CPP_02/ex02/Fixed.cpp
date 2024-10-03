@@ -114,41 +114,41 @@ const Fixed& Fixed::max(const Fixed& a, const Fixed& b) {
 }
 
 // arithmetic operators
-float	Fixed::operator+(const Fixed& other) const {
+const Fixed Fixed::operator+(const Fixed& other) const {
 	return (this->toFloat() + other.toFloat());
 }
 
-float	Fixed::operator-(const Fixed& other) const {
+const Fixed Fixed::operator-(const Fixed& other) const {
 	return (this->toFloat() - other.toFloat());
 
 }
 
-float	Fixed::operator*(const Fixed& other) const {
+const Fixed Fixed::operator*(const Fixed& other) const {
 	return (this->toFloat() * other.toFloat());
 }
 
-float	Fixed::operator/(const Fixed& other) const {
+const Fixed Fixed::operator/(const Fixed& other) const {
 	return (this->toFloat() / other.toFloat());
 }
 
 // prefix
-float	Fixed::operator++() {
+const Fixed Fixed::operator++() {
 	++this->number;
-	return (this->toFloat());
+	return (*this);
 }
-float	Fixed::operator--() {
+const Fixed Fixed::operator--() {
 	--this->number;
-	return (this->toFloat());
+	return (*this);
 }
 
 //postfix
-float	Fixed::operator++(int) {
-	float	previous_value = this->toFloat();
+const Fixed Fixed::operator++(int) {
+	Fixed previous_value = *this;
 	++this->number;
 	return (previous_value);
 }
-float	Fixed::operator--(int) {
-	float previous_value = this->toFloat();
+const Fixed Fixed::operator--(int) {
+	Fixed previous_value = *this;
 	--this->number;
 	return (previous_value);
 }

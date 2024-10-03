@@ -33,17 +33,17 @@ public:
 	bool	operator>=(const Fixed& other) const;
 
 // arithmetic operators
-	float	operator+(const Fixed& other) const;
-	float	operator-(const Fixed& other) const;
-	float	operator*(const Fixed& other) const;
-	float	operator/(const Fixed& other) const;
+	const Fixed	operator+(const Fixed& other) const;
+	const Fixed	operator-(const Fixed& other) const;
+	const Fixed	operator*(const Fixed& other) const;
+	const Fixed	operator/(const Fixed& other) const;
 
 // increment & decrement (postfix)
-	float	operator++(int);
-	float	operator--(int);
+	const Fixed	operator++(int);
+	const Fixed	operator--(int);
 // increment & decrement (prefix)
-	float	operator++();
-	float	operator--();
+	const Fixed	operator++();
+	const Fixed	operator--();
 
 	int		getRawBits(void) const;
 	void	setRawBits(int const raw);
