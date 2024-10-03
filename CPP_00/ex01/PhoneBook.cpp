@@ -35,19 +35,12 @@ void PhoneBook::searchContact()
 		}
 		else
 		{
-			try {
-				id = std::stoi(str);
-			}
-			catch (std::invalid_argument& e)
+			if (str.size() != 1 || (str[0] < '0' || str[0] > '9'))
 			{
-				std::cout << "Input numeric value" << e.what() << std::endl;
+				std::cout << "Input numeric value in range" << std::endl;
 				continue;
 			}
-			catch (std::out_of_range& e)
-			{
-				std::cout << "Input value in integer range" << e.what() << std::endl;
-				continue;
-			}
+			id = str[0] - '0';
 		}
 		if (0 <= id && id < len)
 		{

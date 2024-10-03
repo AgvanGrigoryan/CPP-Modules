@@ -59,7 +59,6 @@ void Contact::set_nickname()
 		if (trimmed.empty() == false)
 		{
 			nickname = trimmed;
-			std::cout << '\'' << trimmed << '\'' << std::endl;
 			break;
 		}
 		std::cout << "Nickname can't be empty" << std::endl;
