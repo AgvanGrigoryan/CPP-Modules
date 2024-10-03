@@ -9,8 +9,12 @@ FragTrap::FragTrap() {
 	std::cout << "FragTrap default constructor called" << std::endl;
 }
 
-FragTrap::~FragTrap() {
-	std::cout << "FragTrap Destructor called" << std::endl;
+FragTrap::FragTrap(const FragTrap& other) {
+	name = other.name;
+	hit_points = other.hit_points;
+	energy_points = other.energy_points;
+	attack_damage = other.attack_damage;
+	std::cout << "FragTrap copy constructor called" << std::endl;
 }
 
 // Paramether Constructor
@@ -20,6 +24,23 @@ FragTrap::FragTrap(const std::string& new_name) {
 	energy_points = 100;
 	attack_damage = 30;
 	std::cout << "FragTrap parameter constructor called" << std::endl;
+}
+
+FragTrap::~FragTrap() {
+	std::cout << "FragTrap Destructor called" << std::endl;
+}
+
+
+FragTrap& FragTrap::operator=(const FragTrap& other) {
+	if (this != &other)
+	{
+		name = other.name;
+		hit_points = other.hit_points;
+		energy_points = other.energy_points;
+		attack_damage = other.attack_damage;
+	}
+	std::cout << "FragTrap copy assignment operator called" << std::endl;
+	return (*this);
 }
 
 void FragTrap::attack(const std::string& target) {

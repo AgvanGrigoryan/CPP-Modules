@@ -4,15 +4,16 @@
 #include "ClapTrap.hpp"
 
 class ScavTrap : virtual public ClapTrap {
-protected:
-	ScavTrap(int);
 public:
 	ScavTrap();
+	ScavTrap(int); // special constructor for diamondTrap
 	ScavTrap(const std::string& name);
-	virtual ~ScavTrap();
+	ScavTrap(const ScavTrap& other);
+	~ScavTrap();
 
-	virtual void	attack(const std::string& target);
-	void	guardGate();
+	ScavTrap& operator=(const ScavTrap& other);
+	void	attack(const std::string& target);
+	void			guardGate();
 	
 };
 

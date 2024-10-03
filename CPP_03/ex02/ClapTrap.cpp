@@ -53,12 +53,16 @@ void ClapTrap::attack(const std::string& target) {
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
+	if (hit_points <= 0)
+		return ;
 	std::cout << name << " takes " << amount << " damage" << std::endl;
-	if (amount >= INT_MAX || amount >= static_cast<unsigned int>(hit_points)) {
+	if (amount >= static_cast<unsigned int>(hit_points))
+	{
 		hit_points = 0;
 		std::cout << name << " die" << std::endl;
 	}
-	hit_points -= amount;
+	else
+		hit_points -= amount;
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {

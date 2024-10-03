@@ -4,14 +4,15 @@
 #include "ClapTrap.hpp"
 
 class FragTrap : virtual public ClapTrap {
-protected:
-	FragTrap(int);
 public:
 	FragTrap();
+	FragTrap(int); // special constructor for diamondTrap
 	FragTrap(const std::string& name);
-	virtual ~FragTrap();
+	FragTrap(const FragTrap& other);
+	~FragTrap();
 
-	virtual void	attack(const std::string& target);
+	FragTrap& operator=(const FragTrap& other);
+	void	attack(const std::string& target);
 	void	highFivesGuys(void);
 	
 };

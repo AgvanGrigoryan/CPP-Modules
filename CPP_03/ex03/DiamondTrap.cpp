@@ -3,7 +3,7 @@
 // Default Constructor
 DiamondTrap::DiamondTrap() : FragTrap(7), ScavTrap(7) {
 	_name = "<DiamondTrap_anonymous>";
-	ClapTrap::name = name + "_clap_name";
+	ClapTrap::name = _name + "_clap_name";
 	std::cout << "DiamondTrap default constructor called" << std::endl;
 }
 
