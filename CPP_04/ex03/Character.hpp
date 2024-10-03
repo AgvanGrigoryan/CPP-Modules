@@ -6,7 +6,7 @@
 
 #define INVENTORY_SIZE 4
 
-class Character : ICharacter {
+class Character : public ICharacter {
 private:
 	std::string name;
 	AMateria* inventory[INVENTORY_SIZE];

@@ -28,5 +28,5 @@ std::string const & AMateria::getType() const {
 }
 
 void AMateria::use(ICharacter& target) {
-	std::cout << "a non-contact strike towards " << target.getName();
+	std::cout << "a non-contact strike towards " << target.getName() << std::endl;
 }

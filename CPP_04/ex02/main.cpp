@@ -30,7 +30,7 @@ int main()
 		std::cout << "\033[1;32m" << "Calling makeSound using Animal* for an object of the Dog class" << "\033[0m" << std::endl;
 		Animal *animal_ptr = new Dog();
 		animal_ptr->makeSound();
-		
+		delete animal_ptr;
 	}
 	// An error occurs when we try to create an object of abstract class type 'Animal'
 	// Animal *animal_ptr = new Animal();
