@@ -23,5 +23,5 @@ int	main(void)
 	dt.whoAmI();
 
 	std::cout << "\033[1;34m\n" << "Destructors" << "\033[0m" << std::endl;
-
+	return (0);
 }

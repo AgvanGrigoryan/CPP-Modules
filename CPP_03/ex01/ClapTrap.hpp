@@ -15,7 +15,7 @@ public:
 	ClapTrap();
 	ClapTrap(const ClapTrap& other);
 	ClapTrap(const std::string& name);
-	~ClapTrap();
+	virtual ~ClapTrap();
 
 // overloaded operators
 	ClapTrap& operator=(const ClapTrap& other); // copy assigment operator

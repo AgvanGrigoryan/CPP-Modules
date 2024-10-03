@@ -9,7 +9,7 @@ public:
 	ScavTrap(int); // special constructor for diamondTrap
 	ScavTrap(const std::string& name);
 	ScavTrap(const ScavTrap& other);
-	~ScavTrap();
+	virtual ~ScavTrap();
 
 	ScavTrap& operator=(const ScavTrap& other);
 	void	attack(const std::string& target);
