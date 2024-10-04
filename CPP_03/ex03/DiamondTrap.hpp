@@ -6,7 +6,7 @@
 
 class DiamondTrap : public FragTrap, public ScavTrap {
 private:
-	std::string	_name;
+	std::string	name;
 
 public:
 // constructors
