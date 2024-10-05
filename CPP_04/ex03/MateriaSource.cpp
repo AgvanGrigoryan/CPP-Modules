@@ -3,9 +3,15 @@
 MateriaSource::MateriaSource() {
 	for (int i = 0; i < MAX_MATERIAS_CNT; i++)
 		known_materias[i] = NULL;
+	std::cout << "MateriaSource constructor called" << std::endl;
 }
 
 MateriaSource::~MateriaSource() {
+	for (int i = 0; i < MAX_MATERIAS_CNT; i++)
+	{
+		if (known_materias[i] != NULL)
+			delete known_materias[i];
+	}
 	std::cout << "MateriaSource destructor called" << std::endl;
 }
 

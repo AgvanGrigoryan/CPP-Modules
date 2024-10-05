@@ -4,6 +4,7 @@
 #include <iostream>
 
 #define IDEAS_CNT 100
+#define INVALID_IDX_RETURN_MSG "INDEX_NOT_FOUND"
 
 class Brain {
 private:
@@ -14,7 +15,8 @@ public:
 	Brain(const Brain& other);
 	~Brain();
 
+	bool	setIdea(unsigned int idx, const std::string& idea);
+	std::string	getIdea(unsigned int idx);
 	Brain& operator=(const Brain& other);
 };
-
 #endif

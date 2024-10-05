@@ -14,7 +14,9 @@ public:
 	virtual ~Dog();
 
 	Dog&	operator=(const Dog& other);
-	virtual void	makeSound() const;
+	bool	setIdea(unsigned int idx, const std::string& idea);
+	std::string	getIdea(unsigned int idx);
+	void	makeSound() const;
 };
 
 #endif

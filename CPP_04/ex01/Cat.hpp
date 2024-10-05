@@ -14,6 +14,8 @@ public:
 	virtual ~Cat();
 
 	Cat&	operator=(const Cat& other);
+	bool	setIdea(unsigned int idx, const std::string& idea);
+	std::string	getIdea(unsigned int idx);
 	void	makeSound() const;
 };
 
