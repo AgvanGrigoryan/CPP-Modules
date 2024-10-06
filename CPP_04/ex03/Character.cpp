@@ -16,10 +16,15 @@ Character::Character(const Character& other) : name(other.name) {
 	int	i;
 
 	std::cout << "Character Copy constructor called" << std::endl;
-	for (i = 0; i < INVENTORY_SIZE && other.inventory[i] != NULL; i++)
-		inventory[i] = other.inventory[i]->clone();
-	while (i < INVENTORY_SIZE)
-		inventory[i++] = NULL;
+	for (i = 0; i < INVENTORY_SIZE; i++)
+	{
+		if (inventory[i] != NULL)
+			delete inventory[i];
+		if (other.inventory[i] != NULL)
+			inventory[i] = other.inventory[i]->clone();
+		else
+			inventory[i] = NULL;
+	}
 }
 
 Character::~Character() {
@@ -36,13 +41,15 @@ Character& Character::operator=(const Character& other) {
 	if (this != &other)
 	{
 		name = other.name;
-		for (i = 0; i < INVENTORY_SIZE && other.inventory[i] != NULL; i++)
+		for (i = 0; i < INVENTORY_SIZE; i++)
 		{
-			delete inventory[i];
-			inventory[i] = other.inventory[i]->clone();
+			if (inventory[i] != NULL)
+				delete inventory[i];
+			if (other.inventory[i] != NULL)
+				inventory[i] = other.inventory[i]->clone();
+			else
+				inventory[i] = NULL;
 		}
-		while (i < INVENTORY_SIZE)
-			inventory[i++] = NULL;
 	}
 	return (*this);
 }
