@@ -2,6 +2,9 @@
 #define BUREAUCRAT_HPP
 
 #include <iostream>
+#include "Form.hpp"
+
+class Form;
 
 #define LOWEST_GRADE 150
 #define HIGHEST_GRADE 1
@@ -17,7 +20,6 @@ public:
 	Bureaucrat(const Bureaucrat& other);
 	~Bureaucrat();
 
-// exception classes
 	class GradeTooHighException : std::exception {};
 	class GradeTooLowException : std::exception {};
 
@@ -25,9 +27,11 @@ public:
 	Bureaucrat& operator=(const Bureaucrat& other);
 	void	downGrade();
 	void	raiseGrade();
+	void	signForm(Form& bureaucrat);
+
 // getters
-	std::string	getName();
-	short		getGrade();
+	std::string	getName() const;
+	short		getGrade() const;
 
 // setters
 	void		setGrade(const short grade);
