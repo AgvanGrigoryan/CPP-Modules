@@ -1,9 +1,19 @@
 #include "Form.hpp"
 
+// exception classes
+const char* Form::GradeTooHighException::what() const throw() {
+	return ("Grade is too high!");
+}
+
+const char* Form::GradeTooLowException::what() const throw() {
+	return ("Grade is too low!");
+}
+
 Form::Form() : _name("Unknown_form"), _gradeToSign(FORM_LOWEST_GRADE), _gradeToExecute(FORM_LOWEST_GRADE), _isSigned(false){
 	std::cout << "Form Default constructor called" << std::endl;
 }
 
+// Constructors
 Form::Form(const std::string& name, short gradeToSign, short gradeToExecute) : _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute), _isSigned(false) {
 	checkGrade(_gradeToSign);
 	checkGrade(_gradeToExecute);
@@ -32,7 +42,6 @@ void	Form::beSigned(const Bureaucrat& bureaucrat) {
 		_isSigned = true;	
 }
 
-
 // getters
 std::string	Form::getName() const {
 	return (_name);
@@ -49,7 +58,6 @@ short	Form::getGradeToExecute() const {
 bool	Form::isSigned() const {
 	return (_isSigned);
 }
-
 
 // setters
 void	Form::checkGrade(const short grade) {
