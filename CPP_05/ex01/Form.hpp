@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include "Bureaucrat.hpp"
-
 class Bureaucrat;
 
 #define FORM_LOWEST_GRADE 150
@@ -20,7 +19,7 @@ public:
 // constructors
 	Form();
 	Form(const Form& other);
-	Form(const std::string& name, short gradeToSign, short gradeToExecute, bool isSigned);
+	Form(const std::string& name, short gradeToSign, short gradeToExecute);
 	~Form();
 
 // exception classes

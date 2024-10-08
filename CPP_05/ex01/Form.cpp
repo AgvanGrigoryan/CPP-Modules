@@ -4,7 +4,7 @@ Form::Form() : _name("Unknown_form"), _gradeToSign(FORM_LOWEST_GRADE), _gradeToE
 	std::cout << "Form Default constructor called" << std::endl;
 }
 
-Form::Form(const std::string& name, short gradeToSign, short gradeToExecute, bool isSigned = false) : _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute), _isSigned(isSigned) {
+Form::Form(const std::string& name, short gradeToSign, short gradeToExecute) : _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute), _isSigned(false) {
 	checkGrade(_gradeToSign);
 	checkGrade(_gradeToExecute);
 	std::cout << "Form copy constructor called" << std::endl;
@@ -26,8 +26,10 @@ Form&	Form::operator=(const Form& other) {
 }
 
 void	Form::beSigned(const Bureaucrat& bureaucrat) {
-	if (bureaucrat.getGrade() < this->_gradeToSign)
+	if (bureaucrat.getGrade() > this->_gradeToSign)
 		throw Form::GradeTooLowException();
+	else
+		_isSigned = true;	
 }
 
 
@@ -50,12 +52,12 @@ bool	Form::isSigned() const {
 
 
 // setters
-// void	Form::checkGrade(const short grade) {
-// 	if (grade > FORM_LOWEST_GRADE)
-// 		throw Form::GradeTooLowException();
-// 	else if (grade < FORM_HIGHEST_GRADE)
-// 		throw Form::GradeTooHighException();
-// }
+void	Form::checkGrade(const short grade) {
+	if (grade > FORM_LOWEST_GRADE)
+		throw Form::GradeTooLowException();
+	else if (grade < FORM_HIGHEST_GRADE)
+		throw Form::GradeTooHighException();
+}
 
 std::ostream& operator<<(std::ostream& outstream, const Form& form) {
 	std::string isFormSigned = form.isSigned() ? " is signed." : " is not signed.";
