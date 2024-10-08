@@ -2,9 +2,9 @@
 #include <iostream>
 
 int	main(void) {
-//	Testing bureaucrat set negative grade
+//	Testing bureaucrat set too high grade
 {
-	std::cout << "\033[0;32m" << "Testing bureaucrat set negative grade" << "\033[0m" << std::endl;
+	std::cout << "\033[0;32m" << "Testing bureaucrat set too high grade" << "\033[0m" << std::endl;
 	try {
 		Bureaucrat ponch("Armenchik", -89);
 	}
@@ -17,9 +17,9 @@ int	main(void) {
 }
 std::cout << '\n';
 
-//	Testing bureaucrat set too high grade
+//	Testing bureaucrat set too low grade
 {
-	std::cout << "\033[0;32m" << "Testing bureaucrat set too high grade" << "\033[0m" << std::endl;
+	std::cout << "\033[0;32m" << "Testing bureaucrat set too low grade" << "\033[0m" << std::endl;
 	try {
 		Bureaucrat ponch("Armenchik", 777);
 	}
