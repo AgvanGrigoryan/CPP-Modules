@@ -83,7 +83,5 @@ std::cout << '\n';
 	Bureaucrat buro("Chaxo", 5);
 	buro.signForm(form);
 }
-
-
-
+	return (0);
 }
