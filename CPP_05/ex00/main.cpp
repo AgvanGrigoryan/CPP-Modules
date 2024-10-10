@@ -9,10 +9,10 @@ int	main(void) {
 		Bureaucrat ponch("Armenchik", -89);
 	}
 	catch (Bureaucrat::GradeTooHighException& e) {
-		std::cout << "\033[0;031m" << "New Grade is too high!" << "\033[0m" << std::endl;
+		std::cout << "\033[0;031m" << e.what() << "\033[0m" << std::endl;
 	}
 	catch (Bureaucrat::GradeTooLowException& e) {
-		std::cout << "\033[0;031m" << "New Grade is too low!" << "\033[0m" << std::endl;
+		std::cout << "\033[0;031m" << e.what() << "\033[0m" << std::endl;
 	}
 }
 std::cout << '\n';
@@ -24,10 +24,10 @@ std::cout << '\n';
 		Bureaucrat ponch("Armenchik", 777);
 	}
 	catch (Bureaucrat::GradeTooHighException& e) {
-		std::cout << "\033[0;031m" << "New Grade is too high!" << "\033[0m" << std::endl;
+		std::cout << "\033[0;031m" << e.what() << "\033[0m" << std::endl;
 	}
 	catch (Bureaucrat::GradeTooLowException& e) {
-		std::cout << "\033[0;031m" << "New Grade is too low!" << "\033[0m" << std::endl;
+		std::cout << "\033[0;031m" << e.what() << "\033[0m" << std::endl;
 	}
 }
 std::cout << '\n';
@@ -44,10 +44,10 @@ std::cout << '\n';
 		std::cout << ponch << std::endl;
 	}
 	catch (Bureaucrat::GradeTooHighException& e) {
-		std::cout << "\033[0;031m" << "New Grade is too high!" << "\033[0m" << std::endl;
+		std::cout << "\033[0;031m" << e.what() << "\033[0m" << std::endl;
 	}
 	catch (Bureaucrat::GradeTooLowException& e) {
-		std::cout << "\033[0;031m" << "New Grade is too low!" << "\033[0m" << std::endl;
+		std::cout << "\033[0;031m" << e.what() << "\033[0m" << std::endl;
 	}
 }
 std::cout << '\n';
@@ -64,10 +64,10 @@ std::cout << '\n';
 		std::cout << ponch << std::endl;
 	}
 	catch (Bureaucrat::GradeTooHighException& e) {
-		std::cout << "\033[0;031m" << "New Grade is too high!" << "\033[0m" << std::endl;
+		std::cout << "\033[0;031m" << e.what() << "\033[0m" << std::endl;
 	}
 	catch (Bureaucrat::GradeTooLowException& e) {
-		std::cout << "\033[0;031m" << "New Grade is too low!" << "\033[0m" << std::endl;
+		std::cout << "\033[0;031m" << e.what() << "\033[0m" << std::endl;
 	}
 }
 std::cout << '\n';
@@ -84,10 +84,10 @@ std::cout << '\n';
 		std::cout << ponch << std::endl;
 	}
 	catch (Bureaucrat::GradeTooHighException& e) {
-		std::cout << "\033[0;031m" << "New Grade is too high!" << "\033[0m" << std::endl;
+		std::cout << "\033[0;031m" << e.what() << "\033[0m" << std::endl;
 	}
 	catch (Bureaucrat::GradeTooLowException& e) {
-		std::cout << "\033[0;031m" << "New Grade is too low!" << "\033[0m" << std::endl;
+		std::cout << "\033[0;031m" << e.what() << "\033[0m" << std::endl;
 	}
 }
 }
