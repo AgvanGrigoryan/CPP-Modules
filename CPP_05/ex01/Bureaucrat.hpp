@@ -20,8 +20,9 @@ public:
 	Bureaucrat(const Bureaucrat& other);
 	~Bureaucrat();
 
-	class GradeTooHighException : std::exception {};
-	class GradeTooLowException : std::exception {};
+// exception classes
+	class GradeTooHighException : std::exception { public: const char *what() const throw(); };
+	class GradeTooLowException : std::exception { public: const char *what() const throw(); };
 
 // member functions
 	Bureaucrat& operator=(const Bureaucrat& other);

@@ -10,10 +10,10 @@ int	main(void) {
 		Form form("Dolma declaration", -89, 10);
 	}
 	catch (Form::GradeTooHighException& e) {
-		std::cout << "\033[0;031m" << "Form Sign Grade is too high!" << "\033[0m" << std::endl;
+		std::cout << "\033[0;031m" << e.what() << "\033[0m" << std::endl;
 	}
 	catch (Form::GradeTooLowException& e) {
-		std::cout << "\033[0;031m" << "Form Sign Grade is too low!" << "\033[0m" << std::endl;
+		std::cout << "\033[0;031m" << e.what() << "\033[0m" << std::endl;
 	}
 }
 std::cout << '\n';
@@ -25,10 +25,10 @@ std::cout << '\n';
 		Form form("Dolma declaration", 777, 10);
 	}
 	catch (Form::GradeTooHighException& e) {
-		std::cout << "\033[0;031m" << "Form Sign Grade is too high!" << "\033[0m" << std::endl;
+		std::cout << "\033[0;031m" << e.what() << "\033[0m" << std::endl;
 	}
 	catch (Form::GradeTooLowException& e) {
-		std::cout << "\033[0;031m" << "Form Sign Grade is too low!" << "\033[0m" << std::endl;
+		std::cout << "\033[0;031m" << e.what() << "\033[0m" << std::endl;
 	}
 }
 std::cout << '\n';
@@ -40,10 +40,10 @@ std::cout << '\n';
 		Form form("Dolma declaration", 10, -77);
 	}
 	catch (Form::GradeTooHighException& e) {
-		std::cout << "\033[0;031m" << "Form Execute Grade is too high!" << "\033[0m" << std::endl;
+		std::cout << "\033[0;031m" << e.what() << "\033[0m" << std::endl;
 	}
 	catch (Form::GradeTooLowException& e) {
-		std::cout << "\033[0;031m" << "Form Execute Grade is too low!" << "\033[0m" << std::endl;
+		std::cout << "\033[0;031m" << e.what() << "\033[0m" << std::endl;
 	}
 }
 std::cout << '\n';
@@ -55,10 +55,10 @@ std::cout << '\n';
 		Form form("Dolma declaration", 10, 777);
 	}
 	catch (Form::GradeTooHighException& e) {
-		std::cout << "\033[0;031m" << "Form Execute Grade is too high!" << "\033[0m" << std::endl;
+		std::cout << "\033[0;031m" << e.what() << "\033[0m" << std::endl;
 	}
 	catch (Form::GradeTooLowException& e) {
-		std::cout << "\033[0;031m" << "Form Execute Grade is too low!" << "\033[0m" << std::endl;
+		std::cout << "\033[0;031m" << e.what() << "\033[0m" << std::endl;
 	}
 }
 std::cout << '\n';
@@ -69,7 +69,9 @@ std::cout << '\n';
 
 	Form form("Dolma declaration", 10, 1);
 	Bureaucrat buro("Chaxo", 100);
+	std::cout << "\033[0;033m";
 	buro.signForm(form);
+	std::cout << "\033[0m";
 }
 std::cout << '\n';
 
