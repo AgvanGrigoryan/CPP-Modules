@@ -46,11 +46,11 @@ void	Bureaucrat::raiseGrade() {
 }
 
 // getters
-std::string	Bureaucrat::getName() {
+std::string	Bureaucrat::getName() const {
 	return (_name);
 }
 
-short		Bureaucrat::getGrade() {
+short		Bureaucrat::getGrade() const {
 	return (_grade);
 }
 

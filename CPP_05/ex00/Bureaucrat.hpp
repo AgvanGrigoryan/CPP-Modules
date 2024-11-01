@@ -26,8 +26,8 @@ public:
 	void	downGrade();
 	void	raiseGrade();
 // getters
-	std::string	getName();
-	short		getGrade();
+	std::string	getName() const;
+	short		getGrade() const;
 
 // setters
 	void		setGrade(const short grade);
