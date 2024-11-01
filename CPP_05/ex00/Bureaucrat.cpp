@@ -64,7 +64,7 @@ void		Bureaucrat::setGrade(const short grade) {
 		_grade = grade;
 }
 
-std::ostream& operator<<(std::ostream& outstream, Bureaucrat& obj) {
+std::ostream& operator<<(std::ostream& outstream, const Bureaucrat& obj) {
 	outstream << obj.getName() << ", bureaucrat grade " << obj.getGrade();
 	return (outstream);
 }
