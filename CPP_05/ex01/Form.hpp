@@ -36,15 +36,13 @@ public:
 // member functions
 	Form&	operator=(const Form& other);
 	void	beSigned(const Bureaucrat& bureaucrat);
+	void	checkGrade(const short grade);
 
 // getters
 	std::string	getName() const;
 	short		getGradeToSign() const;
 	short		getGradeToExecute() const;
 	bool		isSigned() const;
-
-// setters
-	void		checkGrade(const short grade);
 };
 
 std::ostream& operator<<(std::ostream& outstream, const Form& form);

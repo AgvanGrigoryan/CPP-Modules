@@ -17,7 +17,7 @@ Form::Form() : _name("Unknown_form"), _gradeToSign(FORM_LOWEST_GRADE), _gradeToE
 Form::Form(const std::string& name, short gradeToSign, short gradeToExecute) : _name(name), _gradeToSign(gradeToSign), _gradeToExecute(gradeToExecute), _isSigned(false) {
 	checkGrade(_gradeToSign);
 	checkGrade(_gradeToExecute);
-	std::cout << "Form copy constructor called" << std::endl;
+	std::cout << "Form parameter constructor called" << std::endl;
 }
 
 Form::Form(const Form& other) : _name(other._name), _gradeToSign(other._gradeToSign), _gradeToExecute(other._gradeToExecute), _isSigned(other._isSigned) {
@@ -36,7 +36,9 @@ Form&	Form::operator=(const Form& other) {
 }
 
 void	Form::beSigned(const Bureaucrat& bureaucrat) {
-	if (bureaucrat.getGrade() > this->_gradeToSign)
+	if (_isSigned == true)
+		return ;
+	else if (bureaucrat.getGrade() > this->_gradeToSign)
 		throw Form::GradeTooLowException();
 	else
 		_isSigned = true;	

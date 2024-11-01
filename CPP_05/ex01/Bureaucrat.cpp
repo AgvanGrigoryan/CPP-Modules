@@ -9,8 +9,9 @@ const char* Bureaucrat::GradeTooLowException::what() const throw() {
 	return ("Grade is too low!");
 }
 
-Bureaucrat::Bureaucrat() : _name("Unknown"), _grade(LOWEST_GRADE){
+Bureaucrat::Bureaucrat() : _name("Unknown"){
 	std::cout << "Bureaucrat Default constructor called" << std::endl;
+	setGrade(LOWEST_GRADE);
 }
 
 Bureaucrat::Bureaucrat(const std::string& name, short grade) : _name(name), _grade(LOWEST_GRADE) {
