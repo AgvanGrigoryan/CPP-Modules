@@ -1,13 +1,13 @@
-#ifndef SHRUBBERYCREATIONFORM_HPP
-#define SHRUBBERYCREATIONFORM_HPP
+#ifndef PRESIDENTIALPARDONFORM_HPP
+#define PRESIDENTIALPARDONFORM_HPP
 
 #include <iostream>
 #include "AForm.hpp"
 
-#define SHRUBBERY_TOSIGN_GRADE 145
-#define SHRUBBERY_TOEXEC_GRADE 137
+#define PRESIDENTIAL_TOSIGN_GRADE 145
+#define PRESIDENTIAL_TOEXEC_GRADE 137
 
-class ShrubberyCreationForm : public AForm {
+class PresidentialPardonForm : public AForm {
 private:
 	std::string	_target;
 

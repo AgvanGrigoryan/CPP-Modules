@@ -1,36 +1,35 @@
-#include "ShrubberyCreationForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 // Constructors
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm("ShrubberyCreationForm", SHRUBBERY_TOSIGN_GRADE, SHRUBBERY_TOEXEC_GRADE) {
-	std::cout << "ShrubberyCreationForm Default constructor called" << std::endl;
+PresidentialPardonForm::PresidentialPardonForm() : AForm("PresidentialPardonForm", PRESIDENTIAL_TOSIGN_GRADE, PRESIDENTIAL_TOEXEC_GRADE), _target("_NO_TARGET_") {
+	std::cout << "PresidentialPardonForm Default constructor called" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other) : AForm(other), _target(other._target) {
-	std::cout << "ShrubberyCreationForm copy constructor called" << std::endl;
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other) : AForm(other), _target(other._target) {
+	std::cout << "PresidentialPardonForm copy constructor called" << std::endl;
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target) : AForm("ShrubberyCreationForm", SHRUBBERY_TOSIGN_GRADE, SHRUBBERY_TOEXEC_GRADE), _target(target) {
-	std::cout << "ShrubberyCreationForm parameter constructor called" << std::endl;
-	
+PresidentialPardonForm::PresidentialPardonForm(const std::string& target) : AForm("PresidentialPardonForm", PRESIDENTIAL_TOSIGN_GRADE, PRESIDENTIAL_TOEXEC_GRADE), _target(target) {
+	std::cout << "PresidentialPardonForm parameter constructor called" << std::endl;
 }
 
-ShrubberyCreationForm::~ShrubberyCreationForm() {
-	std::cout << "ShrubberyCreationForm destructor called" << std::endl;
+PresidentialPardonForm::~PresidentialPardonForm() {
+	std::cout << "PresidentialPardonForm destructor called" << std::endl;
 }
 
 // member functions
-ShrubberyCreationForm&	ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other) {
-	AForm::operator=(other);
-	_target = other._target;
-	std::cout << "ShrubberyCreationForm copy assignment operator called(it doesn't do anything)" << std::endl;
+PresidentialPardonForm&	PresidentialPardonForm::operator=(const PresidentialPardonForm& other) {
+	std::cout << "PresidentialPardonForm copy assignment operator called(it doesn't do anything)" << std::endl;
+	if (this != &other) {
+		AForm::operator=(other);
+		_target = other._target;
+	}
 	return (*this);
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
-	if (this->isSigned() == false)
-		std::cout << "The Form " << getName() <<  " is not signed" << std::endl;
-	if (executor.getGrade() < getGradeToExecute())
-		std::cout << "Bureaucrat '" << executor.getName() << "' Executed the target '" << _target << "'" << std::endl;
-	else
-		std::cout << "Bureaucrat '" << executor.getName() << "' can not Execute the target '" << _target << "'" << std::endl;
+void PresidentialPardonForm::execute(Bureaucrat const & executor) const {
+	validateExecutionRequirements(executor); // Check the conditions, throw exceptions if necessary
+
+	// Do actions of form if the checks are passed
+	std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }

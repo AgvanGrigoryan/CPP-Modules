@@ -4,10 +4,8 @@
 #include <iostream>
 #include "AForm.hpp"
 
-
 #define PRESIDENTIAL_TOSIGN_GRADE 145
 #define PRESIDENTIAL_TOEXEC_GRADE 137
-
 
 class PresidentialPardonForm : public AForm {
 private:
