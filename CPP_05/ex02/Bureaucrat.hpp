@@ -29,6 +29,7 @@ public:
 	void	downGrade();
 	void	raiseGrade();
 	void	signForm(AForm& form) const;
+	void	executeForm(AForm const & form);
 
 // getters
 	std::string	getName() const;

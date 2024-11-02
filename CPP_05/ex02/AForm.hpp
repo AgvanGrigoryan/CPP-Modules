@@ -18,14 +18,10 @@ private:
 
 public:
 // exception classes
-	class GradeTooHighException : std::exception {
-		public:
-			const char* what() const throw();
-	};
-	class GradeTooLowException : std::exception {
-		public:
-			const char* what() const throw();
-	};
+	class FormNotSignedException : std::exception { public: const char* what() const throw(); };
+	class InsufficientGradeException : std::exception { public: const char* what() const throw(); };
+	class GradeTooHighException : std::exception { public: const char* what() const throw(); };
+	class GradeTooLowException : std::exception { public: const char* what() const throw(); };
 
 // constructors
 	AForm();
@@ -38,6 +34,7 @@ public:
 	AForm&	operator=(const AForm& other);
 	void	beSigned(const Bureaucrat& bureaucrat);
 	void	checkGrade(const short grade);
+	void	validateExecutionRequirements(const Bureaucrat& executor) const;
 	virtual void	execute(Bureaucrat const & executor) const = 0;
 
 // getters

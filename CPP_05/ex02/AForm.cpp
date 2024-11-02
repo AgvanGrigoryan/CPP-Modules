@@ -9,6 +9,14 @@ const char* AForm::GradeTooLowException::what() const throw() {
 	return ("Grade is too low!");
 }
 
+const char* AForm::InsufficientGradeException::what() const throw() {
+	return ("Bureaucrat's grade is too low to execute the form!");
+}
+
+const char* AForm::FormNotSignedException::what() const throw() {
+	return ("The form is not signed!");
+}
+
 AForm::AForm() : _name("Unknown_form"), _gradeToSign(FORM_LOWEST_GRADE), _gradeToExecute(FORM_LOWEST_GRADE), _isSigned(false){
 	std::cout << "Form Default constructor called" << std::endl;
 }
@@ -49,6 +57,13 @@ void	AForm::checkGrade(const short grade) {
 		throw AForm::GradeTooLowException();
 	else if (grade < FORM_HIGHEST_GRADE)
 		throw AForm::GradeTooHighException();
+}
+
+void	AForm::validateExecutionRequirements(const Bureaucrat& executor) const {
+	if (!isSigned())
+		throw FormNotSignedException();
+	if (executor.getGrade() > getGradeToExecute())
+		throw InsufficientGradeException();
 }
 
 // getters

@@ -9,7 +9,7 @@ const char* Bureaucrat::GradeTooLowException::what() const throw() {
 	return ("Grade is too low!");
 }
 
-Bureaucrat::Bureaucrat() : _name("Unknown") {
+Bureaucrat::Bureaucrat() : _name("Unknown"){
 	std::cout << "Bureaucrat Default constructor called" << std::endl;
 	setGrade(LOWEST_GRADE);
 }
@@ -46,13 +46,24 @@ void	Bureaucrat::raiseGrade() {
 	std::cout << "Grade increased" << std::endl;
 }
 
-void	Bureaucrat::signForm(AForm& form) const{
+void	Bureaucrat::signForm(Form& form) {
 	try {
 		form.beSigned(*this);
 		std::cout << this->getName() << " signed " << form.getName() << std::endl;
 	}
-	catch (AForm::GradeTooLowException& e) {
+	catch (Form::GradeTooLowException& e) {
 		std::cout << this->getName() << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
+	}
+}
+
+void	Bureaucrat::executeForm(AForm const & form) {
+	try {
+		form.execute(*this);
+		std::cout << getName() << " executed " << form.getName();
+	} catch (AForm::FormNotSignedException& e) {
+		std::cout << e.what() << std::endl;
+	} catch (AForm::InsufficientGradeException& e) {
+		std::cout << e.what() << std::endl;
 	}
 }
 
@@ -75,7 +86,7 @@ void		Bureaucrat::setGrade(const short grade) {
 		_grade = grade;
 }
 
-std::ostream& operator<<(std::ostream& outstream, const Bureaucrat& obj) {
+std::ostream& operator<<(std::ostream& outstream, Bureaucrat& obj) {
 	outstream << obj.getName() << ", bureaucrat grade " << obj.getGrade();
 	return (outstream);
 }

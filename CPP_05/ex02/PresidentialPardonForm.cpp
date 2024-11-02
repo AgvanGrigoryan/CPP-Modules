@@ -20,20 +20,16 @@ PresidentialPardonForm::~PresidentialPardonForm() {
 // member functions
 PresidentialPardonForm&	PresidentialPardonForm::operator=(const PresidentialPardonForm& other) {
 	std::cout << "PresidentialPardonForm copy assignment operator called(it doesn't do anything)" << std::endl;
-	if (this == &other)
-		return;
-	AForm::operator=(other);
-	_target = other._target;
+	if (this != &other) {
+		AForm::operator=(other);
+		_target = other._target;
+	}
 	return (*this);
 }
 
 void PresidentialPardonForm::execute(Bureaucrat const & executor) const {
-	if (this->isSigned() == false) {
-		std::cout << "The Form " << getName() <<  " is not signed" << std::endl;
-		return;
-	}
-	else if (executor.getGrade() <= getGradeToExecute())
-		std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
-	else
-		std::cout << "Bureaucrat '" << executor.getName() << "' can not Execute the target '" << _target << "'" << std::endl;
+	validateExecutionRequirements(executor); // Check the conditions, throw exceptions if necessary
+
+	// Do actions of form if the checks are passed
+	std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }

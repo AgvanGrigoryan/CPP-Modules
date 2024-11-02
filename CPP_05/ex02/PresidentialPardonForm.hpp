@@ -9,17 +9,17 @@
 #define PRESIDENTIAL_TOEXEC_GRADE 137
 
 
-class PresidentialPardonFrom : public AForm {
+class PresidentialPardonForm : public AForm {
 private:
 	std::string	_target;
 
 public:
-	PresidentialPardonFrom();
-	PresidentialPardonFrom(const PresidentialPardonFrom& other);
-	PresidentialPardonFrom(const std::string& target);
-	virtual ~PresidentialPardonFrom();
+	PresidentialPardonForm();
+	PresidentialPardonForm(const PresidentialPardonForm& other);
+	PresidentialPardonForm(const std::string& target);
+	virtual ~PresidentialPardonForm();
 
-	PresidentialPardonFrom& operator=(const PresidentialPardonFrom& other);
+	PresidentialPardonForm& operator=(const PresidentialPardonForm& other);
 	virtual void	execute(Bureaucrat const & executor) const;
 };
 
