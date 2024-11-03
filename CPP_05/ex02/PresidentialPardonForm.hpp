@@ -1,11 +1,11 @@
 #ifndef PRESIDENTIALPARDONFORM_HPP
 #define PRESIDENTIALPARDONFORM_HPP
 
-#include <iostream>
 #include "AForm.hpp"
+#include <iostream>
 
-#define PRESIDENTIAL_TOSIGN_GRADE 145
-#define PRESIDENTIAL_TOEXEC_GRADE 137
+#define PRESIDENTIAL_TOSIGN_GRADE 25
+#define PRESIDENTIAL_TOEXEC_GRADE 5
 
 class PresidentialPardonForm : public AForm {
 private:
