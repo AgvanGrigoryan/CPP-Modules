@@ -28,7 +28,7 @@ public:
 	Bureaucrat& operator=(const Bureaucrat& other);
 	void	downGrade();
 	void	raiseGrade();
-	void	signForm(AForm& form) const;
+	void	signForm(AForm& form);
 	void	executeForm(AForm const & form);
 
 // getters

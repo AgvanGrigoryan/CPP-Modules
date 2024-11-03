@@ -4,10 +4,10 @@
 #include <iostream>
 #include "AForm.hpp"
 
-#define PRESIDENTIAL_TOSIGN_GRADE 145
-#define PRESIDENTIAL_TOEXEC_GRADE 137
+#define SHRUBBERY_TOSIGN_GRADE 145
+#define SHRUBBERY_TOEXEC_GRADE 137
 
-class PresidentialPardonForm : public AForm {
+class ShrubberyCreationForm : public AForm {
 private:
 	std::string	_target;
 
