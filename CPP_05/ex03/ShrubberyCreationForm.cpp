@@ -68,3 +68,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
 	shrubberyFile << treeArt;
 	shrubberyFile.close();
 }
+
+AForm*	ShrubberyCreationForm::creator(const std::string& target) {
+	return new ShrubberyCreationForm(target);
+}

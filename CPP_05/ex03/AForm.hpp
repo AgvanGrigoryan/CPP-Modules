@@ -31,10 +31,10 @@ public:
 
 
 // member functions
-	AForm&	operator=(const AForm& other);
-	void	beSigned(const Bureaucrat& bureaucrat);
-	void	checkGrade(const short grade);
-	void	validateExecutionRequirements(const Bureaucrat& executor) const;
+	AForm&			operator=(const AForm& other);
+	void			beSigned(const Bureaucrat& bureaucrat);
+	void			checkGrade(const short grade);
+	void			validateExecutionRequirements(const Bureaucrat& executor) const;
 	virtual void	execute(Bureaucrat const & executor) const = 0;
 
 // getters

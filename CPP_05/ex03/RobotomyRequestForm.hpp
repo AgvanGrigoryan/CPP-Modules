@@ -19,6 +19,7 @@ public:
 
 	RobotomyRequestForm& operator=(const RobotomyRequestForm& other);
 	virtual void	execute(Bureaucrat const & executor) const;
+	static AForm*	creator(const std::string& target);
 };
 
 #endif

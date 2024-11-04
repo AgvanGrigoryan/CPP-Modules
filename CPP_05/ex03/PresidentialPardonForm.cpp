@@ -33,3 +33,7 @@ void PresidentialPardonForm::execute(Bureaucrat const & executor) const {
 	// Do actions of form if the checks are passed
 	std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
 }
+
+AForm*	PresidentialPardonForm::creator(const std::string& target) {
+	return new PresidentialPardonForm(target);
+}
