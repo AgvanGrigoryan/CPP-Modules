@@ -1,5 +1,11 @@
 #include "Intern.hpp"
 
+// Exceptions
+const char *Intern::FormNotFoundException::what() const throw() {
+	return ("Form Not Found!");
+}
+
+// Constructors
 Intern::Intern() {
     form_map[0].formName = "robotomy request";
     form_map[0].formCreator = &RobotomyRequestForm::creator;
@@ -13,7 +19,7 @@ Intern::Intern() {
 	std::cout << "Intern default constructor called" << std::endl;
 }
 
-Intern::Intern(const Intern& other) {
+Intern::Intern(const Intern&) {
 	std::cout << "Intern copy constructor called" << std::endl;
 }
 
@@ -22,6 +28,8 @@ Intern::~Intern() {
 }
 
 Intern& Intern::operator=(const Intern& other) {
+	if (this != &other)
+		return (*this);
 	std::cout << "Intern copy assignment operator called" << std::endl;
 	return (*this);
 }

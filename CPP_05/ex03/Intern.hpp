@@ -21,12 +21,15 @@ private:
 
 public:
 	Intern();
-	Intern(const Intern& other);
+	Intern(const Intern&);
 	~Intern();
 
 // member functions
 	Intern& operator=(const Intern& other);
 	AForm*	makeForm(const std::string& formName, const std::string& target);
+
+// Exceptions
+	class FormNotFoundException : std::exception { public: const char *what() const throw(); };
 };
 
 #endif
