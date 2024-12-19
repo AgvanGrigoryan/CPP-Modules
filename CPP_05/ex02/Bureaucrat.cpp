@@ -57,8 +57,13 @@ void	Bureaucrat::signForm(AForm& form) {
 }
 
 void	Bureaucrat::executeForm(AForm const & form) {
-	form.execute(*this);
-	std::cout << getName() << " executed " << form.getName() << std::endl;
+	try {
+		form.execute(*this);
+		std::cout << getName() << " executed " << form.getName() << std::endl;
+	}
+	catch (const std::exception& e) {
+		std::cout << "\033[0;31m" << this->getName() << " couldn't sign " << form.getName() << " because " << e.what() << "\033[0m" << std::endl;
+	}
 }
 
 // getters
@@ -80,7 +85,7 @@ void		Bureaucrat::setGrade(const short grade) {
 		_grade = grade;
 }
 
-std::ostream& operator<<(std::ostream& outstream, Bureaucrat& obj) {
+std::ostream& operator<<(std::ostream& outstream, const Bureaucrat& obj) {
 	outstream << obj.getName() << ", bureaucrat grade " << obj.getGrade();
 	return (outstream);
 }

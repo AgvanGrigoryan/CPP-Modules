@@ -14,12 +14,7 @@ int	main(void) {
 		std::cout << "\033[0;32m" << "Testing ShrubberyCreationForm execution without signing" << "\033[0m" << std::endl;
 		ShrubberyCreationForm form("Garden");
 		Bureaucrat bob("Bob", 140); // Sufficient grade for execution if signed
-		try {
-			bob.executeForm(form); // Should throw FormNotSignedException
-		}
-		catch (const AForm::FormNotSignedException& e) {
-			std::cout << "\033[0;31m" << e.what() << "\033[0m" << std::endl;
-		}
+		bob.executeForm(form); // Should throw FormNotSignedException
 	}
 	std::cout << '\n';
 
@@ -29,12 +24,7 @@ int	main(void) {
 		RobotomyRequestForm form("Bender");
 		Bureaucrat bob("Bob", 70); // Insufficient grade for execution
 		bob.signForm(form);
-		try {
-			bob.executeForm(form); // Should throw InsufficientGradeException
-		}
-		catch (const AForm::InsufficientGradeException& e) {
-			std::cout << "\033[0;31m" << e.what() << "\033[0m" << std::endl;
-		}
+		bob.executeForm(form); // Should throw InsufficientGradeException
 	}
 	std::cout << '\n';
 
@@ -44,12 +34,7 @@ int	main(void) {
 		PresidentialPardonForm form("Arthur Dent");
 		Bureaucrat zaphod("Zaphod", 1); // High grade, sufficient for execution
 		zaphod.signForm(form);
-		try {
-			zaphod.executeForm(form); // Should succeed
-		}
-		catch (const std::exception& e) {
-			std::cout << "\033[0;31m" << e.what() << "\033[0m" << std::endl;
-		}
+		zaphod.executeForm(form); // Should succeed
 	}
 	std::cout << '\n';
 
@@ -59,12 +44,7 @@ int	main(void) {
 		ShrubberyCreationForm form("Park");
 		Bureaucrat alice("Alice", 137); // Sufficient grade for signing and execution
 		form.beSigned(alice);
-		try {
-			alice.executeForm(form); // Should succeed and create a file with ASCII art
-		}
-		catch (const std::exception& e) {
-			std::cout << "\033[0;31m" << e.what() << "\033[0m" << std::endl;
-		}
+		alice.executeForm(form); // Should succeed and create a file with ASCII art
 	}
 	std::cout << '\n';
 
@@ -74,12 +54,7 @@ int	main(void) {
 		RobotomyRequestForm form("Marvin");
 		Bureaucrat ford("Ford", 45); // Sufficient grade for execution
 		form.beSigned(ford);
-		try {
-			ford.executeForm(form); // Randomly succeeds or fails
-		}
-		catch (const std::exception& e) {
-			std::cout << "\033[0;31m" << e.what() << "\033[0m" << std::endl;
-		}
+		ford.executeForm(form); // Randomly succeeds or fails
 	}
 	std::cout << '\n';
 	return (0);

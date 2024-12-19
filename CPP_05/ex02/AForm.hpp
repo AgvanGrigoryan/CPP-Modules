@@ -18,10 +18,10 @@ private:
 
 public:
 // exception classes
-	class FormNotSignedException : std::exception { public: const char* what() const throw(); };
-	class InsufficientGradeException : std::exception { public: const char* what() const throw(); };
-	class GradeTooHighException : std::exception { public: const char* what() const throw(); };
-	class GradeTooLowException : std::exception { public: const char* what() const throw(); };
+	class FormNotSignedException : public std::exception { public: const char* what() const throw(); };
+	class InsufficientGradeException : public std::exception { public: const char* what() const throw(); };
+	class GradeTooHighException : public std::exception { public: const char* what() const throw(); };
+	class GradeTooLowException : public std::exception { public: const char* what() const throw(); };
 
 // constructors
 	AForm();
