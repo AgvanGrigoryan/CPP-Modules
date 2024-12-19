@@ -38,6 +38,6 @@ public:
 	void		setGrade(const short grade);
 };
 
-std::ostream& operator<<(std::ostream& outsteram, Bureaucrat& obj);
+std::ostream& operator<<(std::ostream& outsteram, const Bureaucrat& obj);
 
 #endif

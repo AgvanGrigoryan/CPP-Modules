@@ -81,7 +81,10 @@ std::cout << '\n';
 
 	Form form("Dolma declaration", 10, 1);
 	Bureaucrat buro("Chaxo", 5);
+	std::cout << "\033[0;036m";
 	buro.signForm(form);
+	std::cout << "\033[0m";
+
 }
 	return (0);
 }

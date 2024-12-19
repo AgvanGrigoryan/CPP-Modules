@@ -9,7 +9,7 @@ const char* Bureaucrat::GradeTooLowException::what() const throw() {
 	return ("Grade is too low!");
 }
 
-Bureaucrat::Bureaucrat() : _name("Unknown"){
+Bureaucrat::Bureaucrat() : _name("Unknown"), _grade(LOWEST_GRADE){
 	std::cout << "Bureaucrat Default constructor called" << std::endl;
 	setGrade(LOWEST_GRADE);
 }
@@ -75,7 +75,7 @@ void		Bureaucrat::setGrade(const short grade) {
 		_grade = grade;
 }
 
-std::ostream& operator<<(std::ostream& outstream, Bureaucrat& obj) {
+std::ostream& operator<<(std::ostream& outstream, const Bureaucrat& obj) {
 	outstream << obj.getName() << ", bureaucrat grade " << obj.getGrade();
 	return (outstream);
 }
