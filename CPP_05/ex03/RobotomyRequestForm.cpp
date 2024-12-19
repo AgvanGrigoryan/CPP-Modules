@@ -37,7 +37,7 @@ void RobotomyRequestForm::execute(Bureaucrat const & executor) const {
 		std::cout << _target << " has been robotomized successfully!" << std::endl;
 	}
 	else {
-		std::cout << "THe robotomy failed" << std::endl;
+		std::cout << "The robotomy failed" << std::endl;
 	}
 	
 }
