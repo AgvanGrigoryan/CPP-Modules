@@ -29,7 +29,7 @@ public:
 	AForm*	makeForm(const std::string& formName, const std::string& target);
 
 // Exceptions
-	class FormNotFoundException : std::exception { public: const char *what() const throw(); };
+	class FormNotFoundException : public std::exception { public: const char *what() const throw(); };
 };
 
 #endif

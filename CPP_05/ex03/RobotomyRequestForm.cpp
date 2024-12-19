@@ -39,7 +39,6 @@ void RobotomyRequestForm::execute(Bureaucrat const & executor) const {
 	else {
 		std::cout << "The robotomy failed" << std::endl;
 	}
-	
 }
 
 AForm*	RobotomyRequestForm::creator(const std::string& target) {
