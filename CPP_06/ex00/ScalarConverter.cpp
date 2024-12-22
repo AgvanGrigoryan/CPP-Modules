@@ -95,23 +95,26 @@ char convertToChar(LiteralInfo& info) {
 }
 
 uint	getPrecision(const std::string& str) {
-	uint dotPosition = str.find('.');
+	size_t dotPosition = str.find('.');
 
-	if (dotPosition == std::string::npos)
+	if (dotPosition == str.npos)
 		return (1);
 	return (str.size() - dotPosition - 1);
 }
 
-void	validateLiteral(const std::string& literal, LiteralInfo& info) {
+void	validateLiteral(LiteralInfo& info) {
 	if (info.literal == "+inf" || info.literal == "+inff"
 		|| info.literal == "-inf" || info.literal == "-inff")
 		info.isPseudo = true;
-	else if (literal.empty() || (literal.size() > 1 && std::isalpha(literal[0]))) {
+	else if (info.literal.empty() || (info.literal.size() > 1 && std::isalpha(info.literal[0]))) {
 		info.isNaN = true;
+	}
+	else if (std::isalpha(info.literal[0])) {
+		
 	}
 	
 
-	info.precision = getPrecision(literal);
+	info.precision = getPrecision(info.literal);
 	std::cout << "\033[0;32m" << "Precision: " << info.precision << "\033[0m" << std::endl;
 }
 
@@ -129,7 +132,7 @@ istringstream
  */
 	LiteralInfo info = {false, false, 0.0, 0.0, 0, 0, 1, literal};
 
-	validateLiteral(literal, info);
+	validateLiteral(info);
 	info.asDouble = convertToDouble(info);
 	info.asFloat = convertToFloat(info);
 	// info.asInt = convertToInt(asFloat);
