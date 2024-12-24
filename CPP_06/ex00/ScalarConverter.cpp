@@ -4,12 +4,8 @@
 struct LiteralInfo {
 	bool	isPseudo;
 	bool	isNaN;
-	// bool	isDecimal;
 	double	asDouble;
-	float	asFloat;
-	char	asChar;
-	int		asInt;
-	uint	precision;
+	size_t	precision;
 	const std::string	literal;
 };
 
@@ -28,60 +24,45 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& ) {
 	return (*this);
 }
 
-double convertToDouble(const LiteralInfo& info) {
-	std::stringstream ss(info.literal);
-
-	double a = 0.0;
+void convertToDouble(const LiteralInfo& info) {
 	std::cout << "Double: ";
-
-	ss >> a;
 	if (info.isPseudo)
 		std::cout << info.literal << std::endl;
 	else if (info.isNaN)
 		std::cout << "nan" << std::endl;
-	else if (ss.fail())
-		std::cout << "ss failed: impossible" << std::endl;
 	else
-		std::cout << std::fixed << std::setprecision(info.precision) << a << std::endl;
-	return (a);
+		std::cout << std::fixed << std::setprecision(info.precision) << info.asDouble << std::endl;
 }
 
-float convertToFloat(LiteralInfo& info) {
-	// std::stringstream ss(literal);
-	// ss >> a;
-
+void convertToFloat(LiteralInfo& info) {
 	float f = static_cast<float>(info.asDouble);
 
 	std::cout << "float: ";
 	if (info.isPseudo)
-		std::cout << info.literal;
+		std::cout << info.literal << std::endl;
 	else if (info.isNaN)
-		std::cout << "nan";
+		std::cout << "nanf" << std::endl;
 	else
-		std::cout << std::fixed << std::setprecision(info.precision) << f;
-
-	std::cout << 'f' << std::endl;
-	return (f);
+		std::cout << std::fixed << std::setprecision(info.precision) << f << 'f' << std::endl;
 }
 
-// int convertToInt(float asFloat) {
-// 	int asInt = 
+void convertToInt(LiteralInfo& info) {
 
-// 	ss >> a;
-// 	if (ss.fail())
-// 		std::cout << "impossible" << std::endl;
-// 	else
-// 		std::cout << a << std::endl;
-// }
+	std::cout << "int: ";
+	if (info.isPseudo ||info.isNaN)
+		std::cout << "impossible" << std::endl;
+	else
+		std::cout << static_cast<int>(info.asDouble) << std::endl;
+}
 
-char convertToChar(LiteralInfo& info) {
+void convertToChar(LiteralInfo& info) {
 	// std::stringstream ss;
 	bool	isPossible = false;
 	char	asChar = 0;
 
-	if (std::floor(info.asFloat) == info.asFloat && info.asFloat >= 0 && info.asFloat <= 256) {
+	if (std::floor(info.asDouble) == info.asDouble && info.asDouble >= 0.0 && info.asDouble <= 256.0) {
 		isPossible = true;
-		asChar = info.asFloat;
+		asChar = static_cast<char>(info.asDouble);
 	}
 
 	std::cout << "char: ";
@@ -91,10 +72,9 @@ char convertToChar(LiteralInfo& info) {
 		std::cout << "Non displayable" << std::endl;
 	else
 		std::cout << asChar << std::endl;
-	return (asChar);
 }
 
-uint	getPrecision(const std::string& str) {
+size_t	getPrecision(const std::string& str) {
 	size_t dotPosition = str.find('.');
 
 	if (dotPosition == str.npos)
@@ -103,18 +83,37 @@ uint	getPrecision(const std::string& str) {
 }
 
 void	validateLiteral(LiteralInfo& info) {
-	if (info.literal == "+inf" || info.literal == "+inff"
-		|| info.literal == "-inf" || info.literal == "-inff")
-		info.isPseudo = true;
-	else if (info.literal.empty() || (info.literal.size() > 1 && std::isalpha(info.literal[0]))) {
+	if (info.literal.empty()) {
 		info.isNaN = true;
+		return;
 	}
-	else if (std::isalpha(info.literal[0])) {
-		
+	if (info.literal == "+inf" || info.literal == "+inff"
+		|| info.literal == "-inf" || info.literal == "-inff") {
+		info.isPseudo = true;
+		return;
 	}
+	else if (info.literal.size() > 1) { // checks if in literal is external symbols like
+		size_t		i = 0;
+		size_t	dot_pos = info.literal.find('.');
+
+		if (info.literal[0] == '-' || info.literal[0] == '+')
+			i++;
+		for (; i < info.literal.size(); i++) {
+			if (i != dot_pos && !isdigit(static_cast<unsigned long>(info.literal[i]))) {
+				info.isNaN = true;
+				return;
+			}
+		}
+		std::stringstream ss(info.literal);
+		ss >> info.asDouble;
+	}
+	else if (!std::isdigit(info.literal[0])) {
+		info.asDouble = static_cast<unsigned long>(info.literal[0]);
+	}
+	else
+		info.asDouble = static_cast<unsigned long>(info.literal[0]) - '0';
 	
 
-	info.precision = getPrecision(info.literal);
 	std::cout << "\033[0;32m" << "Precision: " << info.precision << "\033[0m" << std::endl;
 }
 
@@ -130,13 +129,15 @@ double
 strtof() instead of std::stof()
 istringstream
  */
-	LiteralInfo info = {false, false, 0.0, 0.0, 0, 0, 1, literal};
+	LiteralInfo info = {false, false, 0.0, 1, literal};
 
 	validateLiteral(info);
-	info.asDouble = convertToDouble(info);
-	info.asFloat = convertToFloat(info);
-	// info.asInt = convertToInt(asFloat);
-	info.asChar = convertToChar(info);
+	info.precision = getPrecision(info.literal);
+
+	convertToDouble(info);
+	convertToFloat(info);
+	convertToInt(info);
+	convertToChar(info);
 
 	std::stringstream ss(literal);
 
