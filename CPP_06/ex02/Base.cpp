@@ -27,3 +27,11 @@ Base* Base::generate(void) {
 	}
 	return (object);
 }
+
+	void identify(Base* p) {
+		
+	}
+
+	void identify(Base& p) {
+		
+	}
