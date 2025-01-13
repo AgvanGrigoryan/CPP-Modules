@@ -1,12 +1,13 @@
 #include "ScalarConverter.hpp"
 #include <sys/types.h>
+#include <limits.h>
 
 struct LiteralInfo {
 	bool	isPseudo;
 	bool	isNaN;
 	double	asDouble;
 	size_t	precision;
-	const std::string	literal;
+	std::string	literal;
 };
 
 ScalarConverter::ScalarConverter() {
@@ -43,60 +44,6 @@ size_t	precisionLimiterByType(const LiteralInfo& info, size_t maxSignificantDigi
 	return (std::min(info.precision, fractionalDigits));
 }
 
-void printAsDouble(const LiteralInfo& info) {
-	std::cout << "Double: ";
-	if (info.isPseudo)
-		std::cout << info.literal << std::endl;
-	else if (info.isNaN)
-		std::cout << "nan" << std::endl;
-	else {
-		size_t precision = precisionLimiterByType(info, 16);
-		std::cout << std::fixed << std::setprecision(precision) << info.asDouble << std::endl;
-	}
-}
-
-void printAsFloat(LiteralInfo& info) {
-	float f = static_cast<float>(info.asDouble);
-
-	std::cout << "float: ";
-	if (info.isPseudo)
-		std::cout << info.literal << std::endl;
-	else if (info.isNaN)
-		std::cout << "nanf" << std::endl;
-	else {
-		size_t precision = precisionLimiterByType(info, 7);
-		std::cout << std::fixed << std::setprecision(precision) << f << 'f' << std::endl;
-	}
-}
-
-void printAsInt(LiteralInfo& info) {
-
-	std::cout << "int: ";
-	if (info.isPseudo ||info.isNaN)
-		std::cout << "impossible" << std::endl;
-	else
-		std::cout << static_cast<int>(info.asDouble) << std::endl;
-}
-
-void printAsChar(LiteralInfo& info) {
-	// std::stringstream ss;
-	bool	isPossible = false;
-	char	asChar = 0;
-
-	if (std::floor(info.asDouble) == info.asDouble && info.asDouble >= 0.0 && info.asDouble <= 256.0) {
-		isPossible = true;
-		asChar = static_cast<char>(info.asDouble);
-	}
-
-	std::cout << "char: ";
-	if (info.isPseudo || info.isNaN || !isPossible)
-		std::cout << "impossible" << std::endl;
-	else if (!std::isprint(asChar))
-		std::cout << "Non displayable" << std::endl;
-	else
-		std::cout << asChar << std::endl;
-}
-
 void	setPrecision(LiteralInfo& info) {
 	size_t dotPosition = info.literal.find('.');
 	info.precision = 1;
@@ -112,12 +59,16 @@ void	validateLiteral(LiteralInfo& info) {
 		info.isNaN = true;
 		return;
 	}
-	if (info.literal == "+inf" || info.literal == "+inff"
-		|| info.literal == "-inf" || info.literal == "-inff") {
+	if (info.literal == "inf" || info.literal == "+inf" || info.literal == "-inf") {
 		info.isPseudo = true;
 		return;
 	}
-	else if (info.literal.size() > 1) { // checks if in literal is external symbols
+	else if (info.literal == "inff" || info.literal == "-inff" || info.literal == "+inff") {
+		info.literal.resize(info.literal.size() - 1);
+		info.isPseudo = true;
+		return;
+	}
+	else if (info.literal.size() > 1) {
 		size_t		i = 0;
 		size_t	dot_pos = info.literal.find('.');
 
@@ -139,18 +90,59 @@ void	validateLiteral(LiteralInfo& info) {
 		info.asDouble = static_cast<unsigned long>(info.literal[0]) - '0';
 }
 
+void printAsDouble(const LiteralInfo& info) {
+	std::cout << "Double: ";
+	if (info.isPseudo)
+		std::cout << info.literal << std::endl;
+	else if (info.isNaN)
+		std::cout << "nan" << std::endl;
+	else {
+		size_t precision = precisionLimiterByType(info, 16);
+		std::cout << std::fixed << std::setprecision(precision) << info.asDouble << std::endl;
+	}
+}
+
+void printAsFloat(LiteralInfo& info) {
+	float f = static_cast<float>(info.asDouble);
+
+	std::cout << "float: ";
+	if (info.isPseudo)
+		std::cout << info.literal << 'f' << std::endl;
+	else if (info.isNaN)
+		std::cout << "nanf" << std::endl;
+	else {
+		size_t precision = precisionLimiterByType(info, 7);
+		std::cout << std::fixed << std::setprecision(precision) << f << 'f' << std::endl;
+	}
+}
+
+void printAsInt(LiteralInfo& info) {
+	std::cout << "int: ";
+	if (INT_MAX < info.asDouble || INT_MIN > info.asDouble ||info.isPseudo ||info.isNaN)
+		std::cout << "impossible" << std::endl;
+	else
+		std::cout << static_cast<int>(info.asDouble) << std::endl;
+}
+
+void printAsChar(LiteralInfo& info) {
+	bool	isPossible = false;
+	char	asChar = 0;
+
+	if (std::floor(info.asDouble) == info.asDouble && info.asDouble >= 0.0 && info.asDouble <= 256.0) {
+		isPossible = true;
+		asChar = static_cast<char>(info.asDouble);
+	}
+
+	std::cout << "char: ";
+	if (info.isPseudo || info.isNaN || !isPossible)
+		std::cout << "impossible" << std::endl;
+	else if (!std::isprint(asChar))
+		std::cout << "Non displayable" << std::endl;
+	else
+		std::cout << asChar << std::endl;
+}
 
 void ScalarConverter::convert(const std::string& literal) {
-/* 
-Convert literal to these types
-char
-int
-float
-double
-
-strtof() instead of std::stof()
-istringstream
- */
 	LiteralInfo info = {false, false, 0.0, 1, literal};
 
 	validateLiteral(info);
