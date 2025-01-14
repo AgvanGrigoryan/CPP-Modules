@@ -4,7 +4,7 @@ CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 CC = c++ $(CPPFLAGS)
 
 HEADERS = Base.hpp
-SOURCES = main.cpp
+SOURCES = main.cpp Base.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 all: $(PROGRAM_NAME)

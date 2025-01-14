@@ -63,7 +63,7 @@ void	validateLiteral(LiteralInfo& info) {
 		info.isPseudo = true;
 		return;
 	}
-	else if (info.literal == "inff" || info.literal == "-inff" || info.literal == "+inff") {
+	else if (info.literal == "nanf" || info.literal == "inff" || info.literal == "-inff" || info.literal == "+inff") {
 		info.literal.resize(info.literal.size() - 1);
 		info.isPseudo = true;
 		return;
