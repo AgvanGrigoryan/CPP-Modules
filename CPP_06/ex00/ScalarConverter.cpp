@@ -5,6 +5,7 @@
 struct LiteralInfo {
 	bool	isPseudo;
 	bool	isNaN;
+	bool	isFloat;
 	double	asDouble;
 	size_t	precision;
 	std::string	literal;
@@ -68,8 +69,12 @@ void	validateLiteral(LiteralInfo& info) {
 		info.isPseudo = true;
 		return;
 	}
-	else if (info.literal.size() > 1) {
-		size_t		i = 0;
+	else if (info.literal.size() > 1 && info.literal[info.literal.size() - 1] == 'f' &&	info.literal.find('.') != info.literal.npos) {
+		info.literal.resize(info.literal.size() - 1);
+		info.isFloat = true;
+	}
+	if (info.literal.size() > 1 || info.isFloat) {
+		size_t	i = 0;
 		size_t	dot_pos = info.literal.find('.');
 
 		if (info.literal[0] == '-' || info.literal[0] == '+')
@@ -143,7 +148,7 @@ void printAsChar(LiteralInfo& info) {
 }
 
 void ScalarConverter::convert(const std::string& literal) {
-	LiteralInfo info = {false, false, 0.0, 1, literal};
+	LiteralInfo info = {false, false, false, 0.0, 1, literal};
 
 	validateLiteral(info);
 	setPrecision(info);
