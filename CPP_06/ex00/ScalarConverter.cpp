@@ -41,7 +41,7 @@ size_t	precisionLimiterByType(const LiteralInfo& info, size_t maxSignificantDigi
 
 	size_t fractionalDigits = (integralDigits < maxSignificantDigits)
 										? maxSignificantDigits - integralDigits
-										: 0;
+										: 1;
 	return (std::min(info.precision, fractionalDigits));
 }
 
