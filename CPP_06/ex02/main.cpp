@@ -44,6 +44,7 @@ int main(void) {
 	std::cout << "\n\033[0;035m" << "Testing generate():" << "\033[0m" << std::endl;
 
 	identify(ptr);
+	delete ptr;
 }
 	return (0);
 }
