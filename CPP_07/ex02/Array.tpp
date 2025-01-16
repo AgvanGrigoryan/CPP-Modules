@@ -52,8 +52,7 @@ template <typename T>
 T& Array<T>::operator[](unsigned int index) {
 	if (index < _size)
 		return (_array[index]);
-	else
-		throw std::exception();
+	throw std::exception();
 }
 
 template <typename T>
