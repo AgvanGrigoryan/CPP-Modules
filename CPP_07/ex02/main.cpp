@@ -83,6 +83,34 @@ int main(void) {
 			std::cout << std::endl;
 			std::cout << "\033[34m---------------------------------------------\033[0m" << std::endl;
 			}
+			{
+			// COPY ASSIGNMENT OPERATOR
+			Array<int> copyArray;
+
+			copyArray = intArray;
+			std::cout << std::endl;
+			std::cout << "\033[32mCopy assignment operator: copyArray(intArray)\033[0m" << std::endl;
+			std::cout << "\033[34m---------------------------------------------\033[0m" << std::endl;
+			std::cout << "\033[34mPrinting copyArray\033[0m" << std::endl;
+			for (unsigned int i = 0; i < copyArray.size(); i++)
+				std::cout << copyArray[i] << ' ';
+			std::cout << std::endl;
+			std::cout << "\033[34m---------------------------------------------\033[0m" << std::endl;
+			std::cout << "\033[33mChanging an copyArray\033[0m" << std::endl;
+			for (unsigned int num = 10, i = 0; i < copyArray.size(); i++, num--)
+				copyArray[i] = num;
+			std::cout << "\033[34m---------------------------------------------\033[0m" << std::endl;
+			std::cout << "\033[34mPrinting copyArray \033[33mAfter the changes\033[0m" << std::endl;
+			for (unsigned int i = 0; i < copyArray.size(); i++)
+				std::cout << copyArray[i] << ' ';
+			std::cout << std::endl;
+			std::cout << "\033[34m---------------------------------------------\033[0m" << std::endl;
+			std::cout << "\033[34mPrinting intArray \033[33mAfter the changes\033[0m" << std::endl;
+			for (unsigned int i = 0; i < intArray.size(); i++)
+				std::cout << intArray[i] << ' ';
+			std::cout << std::endl;
+			std::cout << "\033[34m---------------------------------------------\033[0m" << std::endl;
+			}
 
 	}
 		// std::cout << std::endl;
