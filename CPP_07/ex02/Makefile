@@ -4,16 +4,16 @@ CPPFLAGS = -Wall -Werror -Wextra -std=c++11
 CC = c++ $(CPPFLAGS)
 
 HEADERS = Array.hpp
-SOURCES = main.cpp Array.cpp
+SOURCES = main.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 all: $(PROGRAM_NAME)
 
 $(PROGRAM_NAME): $(OBJECTS)
-	$(CC) $^ -o $(PROGRAM_NAME) -I.
+	$(CC) $^ -o $(PROGRAM_NAME)
 
 %.o: %.cpp Makefile $(HEADERS)
-	$(CC) -c $< -o $@
+	$(CC) -c $< -o $@ -I.
 
 clean:
 	rm -rf $(OBJECTS)
