@@ -6,7 +6,7 @@
 #include "IMateriaSource.hpp"
 #include "MateriaSource.hpp"
 
-int sub_main(void) {
+int main(void) {
 	
 	{
 		const unsigned int size = 2;
@@ -73,11 +73,4 @@ int sub_main(void) {
 	}
 
 	return 0;
-}
-
-int main(void)
-{
-	sub_main();
-	
-	system("leaks interface");
 }
