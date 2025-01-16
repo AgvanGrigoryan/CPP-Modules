@@ -133,7 +133,7 @@ void printAsChar(LiteralInfo& info) {
 	bool	isPossible = false;
 	char	asChar = 0;
 
-	if (std::floor(info.asDouble) == info.asDouble && info.asDouble >= 0.0 && info.asDouble <= 256.0) {
+	if (std::floor(info.asDouble) == info.asDouble && info.asDouble >= 0.0 && info.asDouble <= 127) {
 		isPossible = true;
 		asChar = static_cast<char>(info.asDouble);
 	}
