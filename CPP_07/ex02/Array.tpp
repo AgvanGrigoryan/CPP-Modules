@@ -63,4 +63,5 @@ unsigned int Array<T>::size() const {
 template <typename T>
 Array<T>::~Array() {
 	delete[] _array;
+	std::cout << "Array Destructor called" << std::endl;
 }
