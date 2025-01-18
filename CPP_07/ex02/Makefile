@@ -1,6 +1,6 @@
 PROGRAM_NAME = TemplateClass
 
-CPPFLAGS = -Wall -Werror -Wextra -std=c++11
+CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 CC = c++ $(CPPFLAGS)
 
 HEADERS = Array.hpp
