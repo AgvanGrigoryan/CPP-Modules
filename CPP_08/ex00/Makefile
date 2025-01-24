@@ -1,9 +1,10 @@
 PROGRAM_NAME = TemplateClass
 
-CPPFLAGS = -Wall -Werror -Wextra -std=c++11
+CPPFLAGS = -Wall -Werror -Wextra -std=c++98 -fsanitize=address 
+
 CC = c++ $(CPPFLAGS)
 
-HEADERS = Array.hpp easyfind.hpp
+HEADERS = easyfind.hpp
 SOURCES = main.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
