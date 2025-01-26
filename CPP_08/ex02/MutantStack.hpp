@@ -7,7 +7,13 @@
 template <typename T, typename Container = std::deque<T> >
 class MutantStack : public std::stack<T, Container> {
 public:
-	// typedef typename MutantStack<T, Container>:: con_type;
+
+	MutantStack();
+	MutantStack(unsigned int N);
+	MutantStack(const MutantStack& other);
+	~MutantStack();
+	MutantStack&	operator=(const MutantStack& other);
+
 	typedef typename Container::iterator iterator;
 	typedef typename Container::const_iterator const_iterator;
 	typedef typename Container::reverse_iterator reverse_iterator;
@@ -23,6 +29,26 @@ public:
 	const_reverse_iterator rend() const;
 
 };
+
+template <typename T, typename Container>
+MutantStack<T,Container>::MutantStack() {
+	std::cout << "MutantStack default constructor called" << std::endl;
+}
+
+template <typename T, typename Container>
+MutantStack<T,Container>::MutantStack(const MutantStack& ) {
+	std::cout << "MutantStack copy constructor called" << std::endl;
+}
+
+template <typename T, typename Container>
+MutantStack<T,Container>::~MutantStack() {
+	std::cout << "MutantStack destructor called" << std::endl;
+}
+
+template <typename T, typename Container>
+MutantStack<T,Container>&	MutantStack<T,Container>::operator=(const MutantStack& ) {
+	std::cout << "MutantStack assignment operator called" << std::endl;
+}
 
 #include "MutantStack.tpp"
 
