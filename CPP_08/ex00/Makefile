@@ -1,4 +1,4 @@
-PROGRAM_NAME = TemplateClass
+PROGRAM_NAME = easyfind
 
 CPPFLAGS = -Wall -Werror -Wextra -std=c++98 -fsanitize=address 
 
