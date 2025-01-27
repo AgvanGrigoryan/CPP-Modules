@@ -47,7 +47,7 @@ MutantStack<T,Container>::~MutantStack() {
 
 template <typename T, typename Container>
 MutantStack<T,Container>&	MutantStack<T,Container>::operator=(const MutantStack& ) {
-	std::cout << "MutantStack assignment operator called" << std::endl;
+	std::cout << "MutantStack copy assignment operator called" << std::endl;
 }
 
 #include "MutantStack.tpp"
