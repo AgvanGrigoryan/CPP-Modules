@@ -4,8 +4,8 @@ CPPFLAGS = -Wall -Werror -Wextra -std=c++98 -fsanitize=address
 
 CC = c++ $(CPPFLAGS)
 
-HEADERS = MutantStack.hpp
-SOURCES = main.cpp
+HEADERS = BitcoinExchange.hpp
+SOURCES = main.cpp BitcoinExchange.cpp
 OBJECTS = $(SOURCES:.cpp=.o)
 
 all: $(PROGRAM_NAME)
