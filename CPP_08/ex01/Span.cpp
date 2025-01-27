@@ -1,5 +1,5 @@
 #include "Span.hpp"
-#include <limits.h>
+#include <climits>
 
 Span::Span(unsigned int N) : _container(0), _current_len(0), _max_len(N) {
 	std::cout << "Span parameter constructor called" << std::endl;
@@ -41,7 +41,7 @@ long long	Span::shortestSpan() {
 	if (_current_len <= 1)
 		throw std::runtime_error("Cannot compute shortest shortest span: here are not enough elements.");
 
-	long long smallestDiff = LONG_LONG_MAX;
+	long long smallestDiff = LLONG_MAX;
 	std::vector<int> temp_container(_container);
 	std::sort(temp_container.begin(), temp_container.end());
 	for (unsigned int i = 1; i < _current_len; i++) {
