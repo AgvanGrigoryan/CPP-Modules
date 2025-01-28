@@ -13,7 +13,7 @@ BitcoinExchange::BitcoinExchange() : priceDataFileName(DATA_CSV) {
 	std::string line;
 	while (std::getline(file, line)) {
 		try {
-			parseLine(line, date, price);
+			parseLine(line, date, price, '|');
 			priceData[date] =  price;
 		}
 		catch (const std::exception& e) {
@@ -83,23 +83,26 @@ float BitcoinExchange::stringToFloat(const std::string& str) {
 	return (result);
 }
 
-void	BitcoinExchange::parseLine(const std::string& line, std::time_t &date, float &price) {
+void	BitcoinExchange::parseLine(const std::string& line, std::time_t &date, float &price, char expected_delimiter) {
 	std::stringstream ss(line);
 	std::string	dateStr;
 	std::string	priceStr;
 	char		delimiter;
 
 	ss >> dateStr >> delimiter >> priceStr;
-	if (ss.fail() || !ss.eof() || delimiter != '|')
-		throw std::runtime_error("Line isn't folowing to format: \"date | value\"");
+	std::cout << "DELIMITER:" << delimiter << std::endl;
+	std::cout << "dateStr:" << dateStr << std::endl;
+	std::cout << "priceStr:" << priceStr << std::endl;
+	if (ss.fail() || !ss.eof() || delimiter != expected_delimiter)
+		throw std::runtime_error(std::string("Line isn't folowing to format: \"date ") + expected_delimiter + " value\"");
 	// functions throw an error when the strings do not follow the correct format
 	date = stringToDate(dateStr);
 	price = stringToFloat(priceStr);
 }
 
-	void	BitcoinExchange::showPriceDate() {
-		std::map<std::time_t, float>::iterator it;
-		for (it = priceData.begin(); it != priceData.end(); it++) {
-			std::cout << it->first << " | " << it->second << std::endl;
-		}
+void	BitcoinExchange::showPriceDate() {
+	std::map<std::time_t, float>::iterator it;
+	for (it = priceData.begin(); it != priceData.end(); it++) {
+		std::cout << it->first << " | " << it->second << std::endl;
 	}
+}

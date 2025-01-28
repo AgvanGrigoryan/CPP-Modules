@@ -19,10 +19,10 @@ public:
 	BitcoinExchange(const BitcoinExchange& other);
 	~BitcoinExchange();
 	BitcoinExchange& operator=(const BitcoinExchange& other);
-	static void			parseLine(const std::string& line, std::time_t &date, float &price);
+	static void			parseLine(const std::string& line, std::time_t &date, float &price, char expected_delimiter);
 	static std::time_t	stringToDate(const std::string& str);
 	static float		stringToFloat(const std::string& str);
-	void	showPriceDate();
+	void				showPriceDate();
 };
 
 #endif
