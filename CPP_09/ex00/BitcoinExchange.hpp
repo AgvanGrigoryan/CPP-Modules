@@ -12,17 +12,19 @@
 
 class BitcoinExchange {
 private:
-	const std::string priceDataFileName;
 	std::map<std::time_t, float> priceData;
+
+	void			parseLine(const std::string& line, std::string &date, std::string &price, char expected_delimiter);
+	std::time_t		stringToDate(const std::string& str);
+	float			stringToFloat(const std::string& str);
+	void 			load_data();
 public:
 	BitcoinExchange();
 	BitcoinExchange(const BitcoinExchange& other);
 	~BitcoinExchange();
 	BitcoinExchange& operator=(const BitcoinExchange& other);
-	static void			parseLine(const std::string& line, std::time_t &date, float &price, char expected_delimiter);
-	static std::time_t	stringToDate(const std::string& str);
-	static float		stringToFloat(const std::string& str);
-	void				showPriceDate();
+	void			exchange(const std::string& inputFile);
+	// void				showPriceDate();
 };
 
 #endif

@@ -1,9 +1,19 @@
 // #include <iostream>
 #include "BitcoinExchange.hpp"
 
-int main(void) {
+int main(int argc, char *argv[]) {
+	std::string inputFile("");
+	if (argc == 2)
+		inputFile = argv[1];
 
-	BitcoinExchange btc;
+	try {
+		BitcoinExchange btc;
 
-	btc.showPriceDate();
+		btc.exchange(inputFile);
+	}
+	catch (const std::exception& e) {
+		std::cerr << "Error: " << e.what() << std::endl;
+	}
+
+	// btc.showPriceDate();
 }
