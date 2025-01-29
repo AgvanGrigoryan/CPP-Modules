@@ -27,7 +27,7 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& other) {
 void	BitcoinExchange::load_data() {
 	std::ifstream file(DATA_CSV);
 	if (!file.is_open()) {
-		throw std::runtime_error("Could not open the file.");
+		throw std::runtime_error(std::string("Could not open the file ") + DATA_CSV);
 	}
 
 	std::string line;
@@ -36,6 +36,7 @@ void	BitcoinExchange::load_data() {
 	std::string	priceStr;
 	std::time_t	date;
 	float		price;
+
 	std::getline(file, line); // to skip first line
 	while (std::getline(file, line)) {
 		line_number++;
@@ -46,8 +47,7 @@ void	BitcoinExchange::load_data() {
 			priceData[date] =  price;
 		}
 		catch (const std::exception& e) {
-			// delete all inserted strings in map if it need
-			std::cout << "\033[0;31m" << '[' << DATA_CSV << ": " << line_number << "] " << e.what() << "\033[0m" << std::endl;
+			std::cerr << "\033[0;31m" << '[' << DATA_CSV << ": " << line_number << "] " << e.what() << "\033[0m" << std::endl;
 		}
 	}
 }
@@ -55,7 +55,7 @@ void	BitcoinExchange::load_data() {
 void	BitcoinExchange::exchange(const std::string& inputFile) {
 	std::ifstream file(inputFile);
 	if (!file.is_open()) {
-		throw std::runtime_error("Could not open the file");
+		throw std::runtime_error(std::string("Could not open the file: ") + inputFile);
 	}
 
 	std::string line;
@@ -77,8 +77,7 @@ void	BitcoinExchange::exchange(const std::string& inputFile) {
 			
 		}
 		catch (const std::exception& e) {
-			// delete all inserted strings in map if it need
-			std::cout << "\033[0;31m" << '[' << inputFile << ": " << line_number << "] " << e.what() << "\033[0m" << std::endl;
+			std::cerr << "\033[0;31m" << '[' << inputFile << ": " << line_number << "] " << e.what() << "\033[0m" << std::endl;
 		}
 	}
 }
@@ -181,10 +180,3 @@ bool BitcoinExchange::isValidDate(int year, int month, int day) {
 
     return day >= 1 && day <= maxDays;
 }
-
-// void	BitcoinExchange::showPriceDate() {
-// 	std::map<std::time_t, float>::iterator it;
-// 	for (it = priceData.begin(); it != priceData.end(); it++) {
-// 		std::cout << it->first << " | " << it->second << std::endl;
-// 	}
-// }

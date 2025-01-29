@@ -27,7 +27,6 @@ public:
 	~BitcoinExchange();
 	BitcoinExchange& operator=(const BitcoinExchange& other);
 	void			exchange(const std::string& inputFile);
-	// void				showPriceDate();
 };
 
 #endif
