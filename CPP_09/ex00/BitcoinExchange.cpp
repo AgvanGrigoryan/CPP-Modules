@@ -126,12 +126,15 @@ std::time_t	BitcoinExchange::stringToDate(const std::string& str) {
 	if (ss.fail())
 		throw std::runtime_error("Date isn't folowing to format: Year-Month-Day");
 
+	if (!isValidDate(dateTm.tm_year, dateTm.tm_mon, dateTm.tm_mday))
+		throw std::runtime_error("invalid Date");
+	
 	dateTm.tm_year -= 1900;
 	dateTm.tm_mon -= 1;
-	
+
 	date = std::mktime(&dateTm);
 	if (date == -1)
-		throw std::runtime_error("Invalid Date");
+		throw std::runtime_error("mktime: Invalid Date");
 	return (date);
 }
 
@@ -157,6 +160,26 @@ void	BitcoinExchange::parseLine(const std::string& line, std::string &dateStr, s
 
 	dateStr = line.substr(0, delimiter_pos);
 	valueStr = line.substr(delimiter_pos + 1);
+}
+
+bool BitcoinExchange::isLeapYear(int year) {
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
+
+bool BitcoinExchange::isValidDate(int year, int month, int day) {
+    if (year < 1900 || year > 9999) // Reasonable range
+        return false;
+    if (month < 1 || month > 12)
+        return false;
+
+    // Days in each month
+    static const int daysInMonth[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+
+    int maxDays = daysInMonth[month - 1];
+    if (month == 2 && isLeapYear(year))
+        maxDays = 29; // Adjust for leap years
+
+    return day >= 1 && day <= maxDays;
 }
 
 // void	BitcoinExchange::showPriceDate() {

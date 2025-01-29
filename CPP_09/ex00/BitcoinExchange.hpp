@@ -18,6 +18,9 @@ private:
 	std::time_t		stringToDate(const std::string& str);
 	float			stringToFloat(const std::string& str);
 	void 			load_data();
+
+	bool isLeapYear(int year);
+	bool isValidDate(int year, int month, int day);
 public:
 	BitcoinExchange();
 	BitcoinExchange(const BitcoinExchange& other);
