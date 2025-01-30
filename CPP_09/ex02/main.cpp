@@ -1,6 +1,7 @@
 #include "PmergeMe.hpp"
+#include <deque>
 #include <iostream>
-#include <vector>
+
 
 int main(int argc, char *argv[]) {
 	if (argc != 2) {
@@ -8,7 +9,10 @@ int main(int argc, char *argv[]) {
 		return (-1);
 	}
 	try {
-		std::vector<int> sequence = parse_int_sequence<std::vector<int> >(std::string(argv[1]));
+		PmergeMe sorter;
+		std::deque<int> deq = sorter.parse_int_sequence<std::deque<int> >(std::string(argv[1]));
+		std::vector<int> vec = sorter.parse_int_sequence<std::vector<int> >(std::string(argv[1]));
+		std::vector<int> sorted_vec = sorter.sort<std::vector<int> >(vec);
 	}
 	catch (const std::exception& e) {
 		std::cerr << e.what() << std::endl;
