@@ -7,21 +7,23 @@
 #include <cmath>
 #include <vector>
 #include <deque>
+#include <ctime>
 
 class PmergeMe {
 private:
-	// std::vector<int>	vec;
-	// std::deque<int>		deq;
-
+	template <typename CT> double	calculate_sorting_time(PmergeMe& sorter, CT& container);
+	template <typename CT> void		insertion_sort(CT& left, CT& right);
+	template <typename CT> void		binary_insertion(CT& container, int value);
 public:
-	template <typename CT>
-	CT		parse_int_sequence(char **sequence, int argc);
-	template <typename CT>
-	CT		sort(CT& container);
-	template <typename CT>
-	void	insertion_sort(CT& left, CT& right);
-	template <typename CT>
-	void	binary_insertion(CT& container, int value);
+	PmergeMe();
+	PmergeMe(const PmergeMe& other);
+	PmergeMe& operator=(const PmergeMe& other);
+	~PmergeMe();
+
+	template <typename CT> CT		parse_int_sequence(char **sequence, int argc);
+	template <typename CT> CT		sort(CT& container);
+
+	void	print_result(std::vector<int>& vec, std::deque<int>& deq);
 };
 
 template <typename CT>
@@ -109,6 +111,14 @@ CT PmergeMe::parse_int_sequence(char **argv, int argc) {
 	if (ss.fail() && !ss.eof())
 		throw std::invalid_argument("Invalid sequence");
 	return (container);
+}
+
+template <typename CT>
+double PmergeMe::calculate_sorting_time(PmergeMe& sorter, CT& container) {
+	std::clock_t start = std::clock();
+	container = sorter.sort<CT>(container);
+	std::clock_t end = std::clock();
+	return ((static_cast<double>(end - start) * 1000000) / CLOCKS_PER_SEC);
 }
 
 #endif
