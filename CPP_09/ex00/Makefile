@@ -1,6 +1,6 @@
 PROGRAM_NAME = btc
 
-CPPFLAGS = -Wall -Werror -Wextra -std=c++98 -fsanitize=address 
+CPPFLAGS = -Wall -Werror -Wextra -std=c++98
 
 CC = c++ $(CPPFLAGS)
 
