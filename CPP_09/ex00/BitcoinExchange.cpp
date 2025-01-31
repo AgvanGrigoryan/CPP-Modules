@@ -64,6 +64,7 @@ void	BitcoinExchange::exchange(const std::string& inputFile) {
 	std::string	quantityStr;
 	std::time_t	date;
 	float		quantity;
+	float		price;
 	std::getline(file, line); // to skip first line
 	while (std::getline(file, line)) {
 		line_number++;
@@ -73,7 +74,8 @@ void	BitcoinExchange::exchange(const std::string& inputFile) {
 			quantity = stringToFloat(quantityStr);
 			if (quantity > 1000.0)
 				throw std::runtime_error("The number is too large.");
-			std::cout << dateStr << " => " << quantity << " = " << priceData[date] * quantity << std::endl;
+			price = getPriceByDate(date);
+			std::cout << dateStr << " => " << quantity << " = " << price * quantity << std::endl;
 			
 		}
 		catch (const std::exception& e) {
@@ -81,7 +83,6 @@ void	BitcoinExchange::exchange(const std::string& inputFile) {
 		}
 	}
 }
-
 
 std::time_t	BitcoinExchange::stringToDate(const std::string& str) {
 	std::tm dateTm;
@@ -142,10 +143,10 @@ float BitcoinExchange::stringToFloat(const std::string& str) {
 	float result;
 
 	ss >> result;
-	if (result < 0)
-		throw std::runtime_error("not a positive number");
 	if (ss.fail() || !ss.eof() || std::isinf(result))
 		throw std::runtime_error("Invalid Value format");
+	if (result < 0)
+		throw std::runtime_error("not a positive number");
 	return (result);
 }
 
@@ -161,22 +162,34 @@ void	BitcoinExchange::parseLine(const std::string& line, std::string &dateStr, s
 	valueStr = line.substr(delimiter_pos + 1);
 }
 
+float	BitcoinExchange::getPriceByDate(const std::time_t date) const {
+	std::map<std::time_t, float>::const_iterator it = priceData.lower_bound(date);
+
+	if (it == priceData.end() || it->first != date) {
+		if (it != priceData.begin())
+			--it;
+		else
+		 	throw std::runtime_error("Date not found");
+	}
+	return (it->second);
+}
+
 bool BitcoinExchange::isLeapYear(int year) {
-    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+	return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
 }
 
-bool BitcoinExchange::isValidDate(int year, int month, int day) {
-    if (year < 1900 || year > 9999) // Reasonable range
-        return false;
-    if (month < 1 || month > 12)
-        return false;
+	bool BitcoinExchange::isValidDate(int year, int month, int day) {
+	if (year < 1900 || year > 9999) // Reasonable range
+		return false;
+	if (month < 1 || month > 12)
+		return false;
 
-    // Days in each month
-    static const int daysInMonth[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	// Days in each month
+	static const int daysInMonth[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-    int maxDays = daysInMonth[month - 1];
-    if (month == 2 && isLeapYear(year))
-        maxDays = 29; // Adjust for leap years
+	int maxDays = daysInMonth[month - 1];
+	if (month == 2 && isLeapYear(year))
+		maxDays = 29; // Adjust for leap years
 
-    return day >= 1 && day <= maxDays;
-}
+	return day >= 1 && day <= maxDays;
+	}
