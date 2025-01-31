@@ -19,11 +19,11 @@ RPN::~RPN() {
 }
 
 RPN& RPN::operator=(const RPN& other) {
+	std::cout << "Copy assignment operator called" << std::endl;
 	if (this == &other)
 		return (*this);
 	this->_expression = other._expression;
 	_is_result_stale = true;
-	std::cout << "Copy assignment operator called" << std::endl;
 	return (*this);
 }
 
